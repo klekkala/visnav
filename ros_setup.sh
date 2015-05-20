@@ -35,3 +35,17 @@ mkdir ~/ros_catkin_ws/external_src
 sudo apt-get install checkinstall cmake
 sudo sh -c 'echo "deb-src http://mirrordirector.raspbian.org/raspbian/ testing main contrib non-free rpi" >> /etc/apt/sources.list'
 sudo apt-get update
+
+###Build libconsole-bridge-dev
+
+$ cd ~/ros_catkin_ws/external_src
+$ sudo apt-get build-dep console-bridge
+$ apt-get source -b console-bridge
+$ sudo dpkg -i libconsole-bridge0.2_*.deb libconsole-bridge-dev_*.deb
+
+
+###Build liblz4-dev
+
+$ cd ~/ros_catkin_ws/external_src
+$ apt-get source -b lz4
+$ sudo dpkg -i liblz4-*.deb
