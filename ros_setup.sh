@@ -49,3 +49,11 @@ $ sudo dpkg -i libconsole-bridge0.2_*.deb libconsole-bridge-dev_*.deb
 $ cd ~/ros_catkin_ws/external_src
 $ apt-get source -b lz4
 $ sudo dpkg -i liblz4-*.deb
+
+###liburdfdom-headers-dev
+
+cd ~/ros_catkin_ws/external_src
+git clone https://github.com/ros/urdfdom_headers.git
+cd urdfdom_headers
+cmake .
+sudo checkinstall make install
