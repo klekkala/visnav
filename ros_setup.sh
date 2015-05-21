@@ -67,4 +67,14 @@ cd urdfdom
 cmake .
 sudo checkinstall make install
 
+###collada-dom-dev:
+
+cd ~/ros_catkin_ws/external_src
+sudo apt-get install libboost-filesystem-dev libxml2-dev
+wget http://downloads.sourceforge.net/project/collada-dom/Collada%20DOM/Collada%20DOM%202.4/collada-dom-2.4.0.tgz
+tar -xzf collada-dom-2.4.0.tgz
+cd collada-dom-2.4.0
+cmake .
+sudo checkinstall make install
+
 
