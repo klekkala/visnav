@@ -57,3 +57,14 @@ git clone https://github.com/ros/urdfdom_headers.git
 cd urdfdom_headers
 cmake .
 sudo checkinstall make install
+
+###liburdfdom-dev:
+
+cd ~/ros_catkin_ws/external_src
+sudo apt-get install libboost-test-dev libtinyxml-dev
+git clone https://github.com/ros/urdfdom.git
+cd urdfdom
+cmake .
+sudo checkinstall make install
+
+
