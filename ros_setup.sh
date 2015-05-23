@@ -57,7 +57,7 @@ git clone https://github.com/ros/urdfdom_headers.git
 cd urdfdom_headers
 cmake .
 sudo checkinstall make install
-
+	
 ###liburdfdom-dev:
 
 cd ~/ros_catkin_ws/external_src
@@ -76,5 +76,4 @@ tar -xzf collada-dom-2.4.0.tgz
 cd collada-dom-2.4.0
 cmake .
 sudo checkinstall make install
-
 
