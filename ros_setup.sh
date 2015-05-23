@@ -5,6 +5,9 @@
 ##############################################################################################
 
 
+
+################################################################Resolving Dependencies#########################################################
+
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu wheezy main" > /etc/apt/sources.list.d/ros-latest.list'
 
 wget https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -O - | sudo apt-key add -
@@ -77,3 +80,24 @@ cd collada-dom-2.4.0
 cmake .
 sudo checkinstall make install
 
+
+####################Making the cat-kin workspace#######################
+
+cd ~/ros_catkin_ws
+rosdep install --from-paths src --ignore-src --rosdistro indigo -y -r --os=debian:wheezy
+
+
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/indigo
+
+###################Adding released packages##########################
+
+cd ~/ros_catkin_ws
+rosinstall_generator ros_comm ros_control joystick_drivers --rosdistro indigo --deps --wet-only --exclude roslisp --tar > indigo-custom_ros.rosinstall
+
+wstool merge -t src indigo-custom_ros.rosinstall
+wstool update -t src
+
+
+rosdep install --from-paths src --ignore-src --rosdistro indigo -y -r --os=debian:wheezy
+
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/indigo
