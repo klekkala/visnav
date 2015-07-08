@@ -5,15 +5,16 @@
 ##############################################################################################
 
 mkdir ~/ fuerte_workspace
- Insert the following line at the end
+
+##Insert the following line at the end
 export ROS_PACKAGE_PATH = $ROS_PACKAGE_PATH :~/
 fuerte_workspace
 
-$ cd ~/ fuerte_workspace
-$ git clone https :// github . com / tum - vision /
+cd ~/ fuerte_workspace
+git clone https :// github . com / tum - vision /
 ardrone_autonomy . git
 
-5. Build the driver
-$ cd ardrone_autonomy
-$ ./ build_sdk . sh
-$ rosmake
+###Build the driver
+cd ardrone_autonomy
+./ build_sdk . sh
+rosmake
