@@ -1,0 +1,21 @@
+<package>
+  <description brief="visnav2013_exercise3">
+
+     visnav2013_exercise3
+
+  </description>
+  <author>Christian Kerl</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/visnav2013_exercise3</url>
+  <depend package="sensor_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="roscpp"/>
+  <depend package="tf"/>
+  <depend package="visualization_msgs"/>
+  <depend package="ardrone_autonomy"/>
+  <depend package="dynamic_reconfigure"/>
+  <depend package="common_rosdeps" />
+</package>
+
+
