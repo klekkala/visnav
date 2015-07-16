@@ -1,0 +1,14 @@
+List of sensors:
+
+Gyroscope:                   Measuring the orientation of the quadcopter
+Accelerometer:               Measuring the acceleration of the quadcopter
+Altimeter(pressure):         Measuring the height of the quadcopter
+Magnetometer:                Measuring the magnetic orientation according to the earth's magnetic field
+Front Camera:
+Down Camera:
+Tracking Camera:             Tracking a point on the image
+USonic sensor left:
+USonic sensor right:
+USonic sensor back:  
+GPS:                         Measuring the Latitude and Longitude coordinates on the earth
+
