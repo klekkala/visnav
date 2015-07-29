@@ -25,14 +25,14 @@
    **Multiwii Flight Controller
 	D11 <--> 33(CAM PITCH)
 	D10 <--> 32(CAM ROLL)  
-	D09 <--> A15 
-	D08 <--> A14
-	D07 <--> A13
-	D06 <--> A12
-	D05 <--> A11
-	D04 <--> A10
-	D03 <--> A09
-	D02 <--> A08
+	D09 <--> A15(AUX-4) 
+	D08 <--> A14(AUX-3)
+	D07 <--> A13(AUX-2)
+	D06 <--> A12(AUX-1)
+	D05 <--> A11(YAW)
+	D04 <--> A10(PITCH)
+	D03 <--> A09(ROLL)
+	D02 <--> A08(THROTTLE)
 
    **USB to Raspberry
 */
