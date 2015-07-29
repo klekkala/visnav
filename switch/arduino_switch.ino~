@@ -13,9 +13,19 @@
 #define DEBUG
 
 
-/*  Arduino Pin configuration
- *  
- */
+
+/****  Arduino Pin configuration
+  **Multiwii Flight Controller
+	D12<-->
+	D11
+	D10
+	D09
+	D08
+	D07
+	D06
+	D05
+	D04 
+*/
 
 #define ESC_A 9
 #define ESC_B 6

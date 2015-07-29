@@ -16,13 +16,13 @@
 
 /****  Arduino Pin configuration
   **Multiwii Flight Controller
-	D12<-->
-	D11
-	D10
-	D09
-	D08
-	D07
-	D06
+	D12 <--> 33(CAM PITCH)
+	D11 <--> 32(CAM ROLL)  
+	D10 <--> A15 
+	D09 <--> A14
+	D08 <--> A13
+	D07 <--> A12
+	D06<-->
 	D05
 	D04 
 */
