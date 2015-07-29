@@ -84,12 +84,6 @@
 #define ROUNDING_BASE 50
 
 
-// Set these a little high since they are registering low on AQ
-#define MIN_PULSE_TIME 1030   // 1000us
-#define MAX_PULSE_TIME 1990   // 2000us
-#define HALF_PULSE_TIME (MIN_PULSE_TIME + MAX_PULSE_TIME) / 2
-#define SYNC_PULSE_TIME 3050  // 3000us
-
 #define SERIAL_BAUD 38400
 
 #define PIN_LED 13
