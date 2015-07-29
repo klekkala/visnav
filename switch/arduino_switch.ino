@@ -154,12 +154,18 @@ void setup(){
   initBalancing();
   initRegulators();
   
-  #ifdef DEBUG                        // Device tests go here
+  pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_PPM, OUTPUT);
+
+  Serial.begin(38400);
   
-  Serial.begin(9600);                 // Serial only necessary if in DEBUG mode
-  Serial.flush();
+  setDefaultPulseWidths();
   
-  #endif
+  // Start timer with sync pulse
+  Timer1.initialize(SYNC_PULSE_TIME);
+  Timer1.attachInterrupt(isr_sendPulses);
+  isr_sendPulses();
+
 }
 
 
