@@ -49,32 +49,6 @@
 
 
 
-#define ESC_A 9
-#define ESC_B 6
-#define ESC_C 5
-#define ESC_D 3
-
-#define RC_1 13
-#define RC_2 12 
-#define RC_3 11
-#define RC_4 10
-#define RC_5 8
-#define RC_PWR A0
-
-
-/* ESC configuration
- *
- */
-
-#define ESC_MIN 22
-#define ESC_MAX 115
-#define ESC_TAKEOFF_OFFSET 30
-#define ESC_ARM_DELAY 5000
-
-/* RC configuration
- * 
- */
-
 #define RC_HIGH_CH1 1000
 #define RC_LOW_CH1 2000
 #define RC_HIGH_CH2 1000
@@ -170,7 +144,6 @@ float ch1Last, ch2Last, ch4Last, velocityLast;
 void setup(){
   
   initRC();                            // Self explaining
-  initMPU();
   initESCs();
   initBalancing();
   initRegulators();
@@ -186,11 +159,9 @@ void setup(){
 
 void loop(){
   
-  while(!mpuInterrupt && fifoCount < packetSize){
+  while(Interrupt && fifoCount < packetSize){
      
-    /* Do nothing while MPU is not working
-     * This should be a VERY short period
-     */
+    /*gap*/
       
   }
   
@@ -248,37 +219,6 @@ void computePID(){
 
 }
 
-/*  getYPR function
- *
- *  gets data from MPU and
- *  computes pitch, roll, yaw on the MPU's DMP
- */
-
-void getYPR(){
-  
-    mpuInterrupt = false;
-    mpuIntStatus = mpu.getIntStatus();
-    fifoCount = mpu.getFIFOCount();
-    
-    if((mpuIntStatus & 0x10) || fifoCount >= 1024){ 
-      
-      mpu.resetFIFO(); 
-    
-    }else if(mpuIntStatus & 0x02){
-    
-      while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
-  
-      mpu.getFIFOBytes(fifoBuffer, packetSize);
-      
-      fifoCount -= packetSize;
-    
-      mpu.dmpGetQuaternion(&q, fifoBuffer);
-      mpu.dmpGetGravity(&gravity, &q);
-      mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-    
-    }
-
-}
 
 /*  calculateVelocities function
  *  
@@ -339,10 +279,6 @@ inline void arm(){
   
   delay(ESC_ARM_DELAY);
 
-}
-
-inline void dmpDataReady() {
-    mpuInterrupt = true;
 }
 
 inline void initRC(){

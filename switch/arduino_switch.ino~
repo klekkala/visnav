@@ -117,23 +117,6 @@
 
 
 
-/** MPU variables **/
-
-MPU6050 mpu;                           // mpu interface object
-
-
-uint8_t mpuIntStatus;                  // mpu statusbyte
-uint8_t devStatus;                     // device status    
-uint16_t packetSize;                   // estimated packet size  
-uint16_t fifoCount;                    // fifo buffer size   
-uint8_t fifoBuffer[64];                // fifo buffer 
-
-Quaternion q;                          // quaternion for mpu output
-VectorFloat gravity;                   // gravity vector for ypr
-float ypr[3] = {0.0f,0.0f,0.0f};       // yaw pitch roll values
-float yprLast[3] = {0.0f, 0.0f, 0.0f};
-
-volatile bool mpuInterrupt = false;    //interrupt flag
 
 /* Interrupt lock
  *
@@ -187,7 +170,6 @@ float ch1Last, ch2Last, ch4Last, velocityLast;
 void setup(){
   
   initRC();                            // Self explaining
-  initMPU();
   initESCs();
   initBalancing();
   initRegulators();
@@ -203,11 +185,9 @@ void setup(){
 
 void loop(){
   
-  while(!mpuInterrupt && fifoCount < packetSize){
+  while(Interrupt && fifoCount < packetSize){
      
-    /* Do nothing while MPU is not working
-     * This should be a VERY short period
-     */
+    /*gap*/
       
   }
   
@@ -265,37 +245,6 @@ void computePID(){
 
 }
 
-/*  getYPR function
- *
- *  gets data from MPU and
- *  computes pitch, roll, yaw on the MPU's DMP
- */
-
-void getYPR(){
-  
-    mpuInterrupt = false;
-    mpuIntStatus = mpu.getIntStatus();
-    fifoCount = mpu.getFIFOCount();
-    
-    if((mpuIntStatus & 0x10) || fifoCount >= 1024){ 
-      
-      mpu.resetFIFO(); 
-    
-    }else if(mpuIntStatus & 0x02){
-    
-      while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
-  
-      mpu.getFIFOBytes(fifoBuffer, packetSize);
-      
-      fifoCount -= packetSize;
-    
-      mpu.dmpGetQuaternion(&q, fifoBuffer);
-      mpu.dmpGetGravity(&gravity, &q);
-      mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-    
-    }
-
-}
 
 /*  calculateVelocities function
  *  
@@ -356,10 +305,6 @@ inline void arm(){
   
   delay(ESC_ARM_DELAY);
 
-}
-
-inline void dmpDataReady() {
-    mpuInterrupt = true;
 }
 
 inline void initRC(){
