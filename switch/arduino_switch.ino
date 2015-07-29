@@ -88,9 +88,7 @@
 #define RC_LOW_CH5 2000
 #define RC_ROUNDING_BASE 50
 
-/*  PID configuration
- *  
- */
+/** PID configuration **/
 
 #define PITCH_P_VAL 0.5
 #define PITCH_I_VAL 0
@@ -105,9 +103,8 @@
 #define YAW_D_VAL 1
 
 
-/* Flight parameters
- *
- */
+
+/** Flight parameters **/
 
 #define PITCH_MIN -30
 #define PITCH_MAX 30
@@ -120,9 +117,8 @@
 #define PID_YAW_INFLUENCE 20
 
 
-/*  MPU variables
- *
- */
+
+/** MPU variables **/
 
 MPU6050 mpu;                           // mpu interface object
 
@@ -146,9 +142,7 @@ volatile bool mpuInterrupt = false;    //interrupt flag
  
 boolean interruptLock = false;
 
-/*  RC variables
- *
- */
+/** RC variables **/
 
 float ch1, ch2, ch3, ch4, ch5;         // RC channel inputs
 
@@ -158,9 +152,9 @@ unsigned long rcLastChange3 = micros();
 unsigned long rcLastChange4 = micros();
 unsigned long rcLastChange5 = micros();
 
-/*  Motor controll variables
- *
- */
+
+
+/** Motor control variables **/
 
 int velocity;                          // global velocity
 
