@@ -60,7 +60,7 @@
 #define CH1 ROLL
 #define CH3 THROTTLE
 
-
+/** H,M,L for Channels **/
 #define HIGH_CH1 1000
 #define MID_CH1 2000
 #define LOW_CH1 3000
