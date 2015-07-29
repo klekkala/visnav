@@ -222,25 +222,6 @@ void calculateVelocities(){
   
 }
 
-inline void updateMotors(){
-
-  a.write(va);
-  c.write(vc);
-  b.write(vb);
-  d.write(vd);
-
-}
-
-inline void arm(){
-
-  a.write(ESC_MIN);
-  b.write(ESC_MIN);
-  c.write(ESC_MIN);
-  d.write(ESC_MIN);
-  
-  delay(ESC_ARM_DELAY);
-
-}
 
 inline void initRC(){
   pinMode(RC_PWR, OUTPUT);
