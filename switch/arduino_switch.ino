@@ -257,18 +257,6 @@ void initMPU(){
   }
 }
 
-inline void initESCs(){
-
-  a.attach(ESC_A);
-  b.attach(ESC_B);
-  c.attach(ESC_C);
-  d.attach(ESC_D);
-  
-  delay(100);
-  
-  arm();
-
-}
 
 inline void initBalancing(){
 
@@ -322,6 +310,33 @@ inline void acquireLock(){
 
 inline void releaseLock(){
   interruptLock = false;
+}
+
+void handleSerial() {
+  // Handle Serial Data
+  if (Serial.available()) {
+    lastReceived = millis();
+    currentByte = Serial.read();
+
+    if (currentByte == 254) {
+      // Either packet is done, or we got corrupt data. Reset the packet
+      bytesReceived = 0;
+    } else {
+      buffer[bytesReceived] = currentByte;
+      bytesReceived++;
+    }
+
+    if (bytesReceived == CHANNELS) {
+      bytesReceived = 0;
+      armed = true;
+
+      // Convert char (0-250) to pulse width (1000-2000)
+      for (int i=0; i<CHANNELS; i++) {
+        pulseWidths[i] = map(buffer[i], MIN_RECEIVER_VALUE, MAX_RECEIVER_VALUE, 
+                                        MIN_PULSE_TIME, MAX_PULSE_TIME);
+      }
+    }
+  }
 }
 
 #endif
