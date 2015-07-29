@@ -5,7 +5,6 @@
 #include <Wire.h>
 #include <I2Cdev.h>
 #include <helper_3dmath.h>
-#include <MPU6050_6Axis_MotionApps20.h>
 #include <PID_v1.h>
 #include <PinChangeInt.h>
 #include <PinChangeIntConfig.h>
@@ -118,23 +117,6 @@
 
 
 
-/** MPU variables **/
-
-MPU6050 mpu;                           // mpu interface object
-
-
-uint8_t mpuIntStatus;                  // mpu statusbyte
-uint8_t devStatus;                     // device status    
-uint16_t packetSize;                   // estimated packet size  
-uint16_t fifoCount;                    // fifo buffer size   
-uint8_t fifoBuffer[64];                // fifo buffer 
-
-Quaternion q;                          // quaternion for mpu output
-VectorFloat gravity;                   // gravity vector for ypr
-float ypr[3] = {0.0f,0.0f,0.0f};       // yaw pitch roll values
-float yprLast[3] = {0.0f, 0.0f, 0.0f};
-
-volatile bool mpuInterrupt = false;    //interrupt flag
 
 /* Interrupt lock
  *
@@ -215,7 +197,8 @@ void loop(){
   getYPR();                          
   computePID();
   calculateVelocities();
-  updateMotors();
+  updateMotors(
+);
   
 }
 
