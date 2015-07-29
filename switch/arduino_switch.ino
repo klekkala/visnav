@@ -62,23 +62,23 @@
 
 /** H,M,L for Channels **/
 #define HIGH_CH1 1000
-#define MID_CH1 2000
+#define MID_CH1 (HIGH_CH1 + LOW_CH1) / 2
 #define LOW_CH1 3000
 
 #define HIGH_CH2 1000
-#define MID_CH2 2000
+#define MID_CH2 (HIGH_CH2 + LOW_CH2) / 2
 #define LOW_CH2 3000
 
 #define HIGH_CH3 1000
-#define MID_CH3 2000
+#define MID_CH3 (HIGH_CH3 + LOW_CH3) / 2
 #define LOW_CH3 3000
 
 #define HIGH_CH4 1000
-#define MID_CH4 2000
+#define MID_CH4 (HIGH_CH4 + LOW_CH4) / 2
 #define LOW_CH4 3000
 
 #define HIGH_CH5 1000
-#define MID_CH5 2000
+#define MID_CH5 (HIGH_CH5 + LOW_CH5) / 2
 #define LOW_CH5 3000
 
 #define ROUNDING_BASE 50
