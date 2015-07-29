@@ -36,6 +36,7 @@
    **USB to Raspberry
 */
 
+/** Pin Macros **/
 #define CAM_PITCH 11 
 #define CAM_ROLL 10
 #define AUX-1 9
@@ -47,16 +48,18 @@
 #define ROLL 3
 #define THROTTLE 2
 
+
 /*** Alternate MACROS ***/
 
-#define CH1
-#define CH1 AUX-2 
-#define CH1 AUX-3
-#define CH1 AUX-4
-#define CH1 YAW 5
-#define CH1 PITCH
+#define CH5 AUX-1
+#define CH6 AUX-2 
+#define CH7 AUX-3
+#define CH8 AUX-4
+#define CH4 YAW 5
+#define CH2 PITCH
 #define CH1 ROLL
-#define CH1 THROTTLE
+#define CH3 THROTTLE
+
 
 #define HIGH_CH1 1000
 #define MID_CH1 2000
