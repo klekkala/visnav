@@ -37,6 +37,19 @@
    **USB to Raspberry
 */
 
+#define CAM_PITCH 11 
+#define CAM_ROLL 10
+#define AUX-1 9
+#define AUX-2 8
+#define AUX-3 7
+#define AUX-4 6
+#define YAW 5
+#define PITCH 4
+#define ROLL 3
+#define THROTTLE 2
+
+
+
 #define ESC_A 9
 #define ESC_B 6
 #define ESC_C 5
