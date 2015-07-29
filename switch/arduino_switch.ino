@@ -10,7 +10,7 @@
 #include <PinChangeIntConfig.h>
 
 #define DEBUG
-
+#define CHANNELS 
 
 
 /****  Arduino Pin configuration
