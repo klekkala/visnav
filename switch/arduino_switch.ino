@@ -10,7 +10,7 @@
 #include <PinChangeIntConfig.h>
 
 #define DEBUG
-#define CHANNELS 
+#define CHANNELS 8
 
 
 /****  Arduino Pin configuration
@@ -49,17 +49,17 @@
 
 
 
-#define RC_HIGH_CH1 1000
-#define RC_LOW_CH1 2000
-#define RC_HIGH_CH2 1000
-#define RC_LOW_CH2 2000
-#define RC_HIGH_CH3 1000
-#define RC_LOW_CH3 2000
-#define RC_HIGH_CH4 1000
-#define RC_LOW_CH4 2000
-#define RC_HIGH_CH5 1000
-#define RC_LOW_CH5 2000
-#define RC_ROUNDING_BASE 50
+#define HIGH_CH1 1000
+#define LOW_CH1 2000
+#define HIGH_CH2 1000
+#define LOW_CH2 2000
+#define HIGH_CH3 1000
+#define LOW_CH3 2000
+#define HIGH_CH4 1000
+#define LOW_CH4 2000
+#define HIGH_CH5 1000
+#define LOW_CH5 2000
+#define ROUNDING_BASE 50
 
 
 // Set these a little high since they are registering low on AQ
@@ -197,8 +197,8 @@ void calculateVelocities(){
 
   acquireLock();
 
-  ch3 = floor(ch3/RC_ROUNDING_BASE)*RC_ROUNDING_BASE;
-  velocity = map(ch3, RC_LOW_CH3, RC_HIGH_CH3, ESC_MIN, ESC_MAX);
+  ch3 = floor(ch3/ROUNDING_BASE)*ROUNDING_BASE;
+  velocity = map(ch3, LOW_CH3, HIGH_CH3, ESC_MIN, ESC_MAX);
   
   releaseLock();
 
@@ -230,15 +230,15 @@ void calculateVelocities(){
 
 
 inline void initRC(){
-  pinMode(RC_PWR, OUTPUT);
-  digitalWrite(RC_PWR, HIGH);
+  pinMode(PWR, OUTPUT);
+  digitalWrite(PWR, HIGH);
   
   // FIVE FUCKING INTERRUPTS !!!
-  PCintPort::attachInterrupt(RC_1, rcInterrupt1, CHANGE);
-  PCintPort::attachInterrupt(RC_2, rcInterrupt2, CHANGE);
-  PCintPort::attachInterrupt(RC_3, rcInterrupt3, CHANGE);
-  PCintPort::attachInterrupt(RC_4, rcInterrupt4, CHANGE);
-  PCintPort::attachInterrupt(RC_5, rcInterrupt5, CHANGE);
+  PCintPort::attachInterrupt(1, rcInterrupt1, CHANGE);
+  PCintPort::attachInterrupt(2, rcInterrupt2, CHANGE);
+  PCintPort::attachInterrupt(3, rcInterrupt3, CHANGE);
+  PCintPort::attachInterrupt(4, rcInterrupt4, CHANGE);
+  PCintPort::attachInterrupt(5, rcInterrupt5, CHANGE);
   
 }
 
