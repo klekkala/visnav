@@ -15,16 +15,26 @@
 
 
 /****  Arduino Pin configuration
-  **Multiwii Flight Controller
-	D12 <--> 33(CAM PITCH)
-	D11 <--> 32(CAM ROLL)  
-	D10 <--> A15 
-	D09 <--> A14
-	D08 <--> A13
-	D07 <--> A12
-	D06<-->
-	D05
-	D04 
+   **ESP8266(ESP-07) Wifi Serial Adapter
+	5V  <--> VCC
+	5V  <--> CH_PD
+	GND <--> GND
+	D13 <--> TX 
+	D12 <--> RX
+
+   **Multiwii Flight Controller
+	D11 <--> 33(CAM PITCH)
+	D10 <--> 32(CAM ROLL)  
+	D09 <--> A15 
+	D08 <--> A14
+	D07 <--> A13
+	D06 <--> A12
+	D05 <--> A11
+	D04 <--> A10
+	D03 <--> A09
+	D02 <--> A08
+
+   **USB to Raspberry
 */
 
 #define ESC_A 9
