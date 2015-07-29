@@ -84,11 +84,9 @@
 #define ROUNDING_BASE 50
 
 
+/** Reciever settings **/
+
 #define SERIAL_BAUD 38400
-
-#define PIN_LED 13
-#define PIN_PPM 9
-
 #define RECEIVER_TIMEOUT 1500 // 1.5s
 #define MIN_RECEIVER_VALUE 0
 #define MAX_RECEIVER_VALUE 250
@@ -164,11 +162,6 @@ float ch1Last, ch2Last, ch4Last, velocityLast;
  */
 
 void setup(){
-  
-  initRC();                            // Self explaining
-  initESCs();
-  initBalancing();
-  initRegulators();
   
   pinMode(PIN_LED, OUTPUT);
   pinMode(PIN_PPM, OUTPUT);
