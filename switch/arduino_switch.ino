@@ -76,20 +76,6 @@
 #define RECEIVER_TIMEOUT 1500 // 1.5s
 #define MIN_RECEIVER_VALUE 0
 #define MAX_RECEIVER_VALUE 250
-/** PID configuration **/
-
-#define PITCH_P_VAL 0.5
-#define PITCH_I_VAL 0
-#define PITCH_D_VAL 1
-
-#define ROLL_P_VAL 2
-#define ROLL_I_VAL 5
-#define ROLL_D_VAL 1
-
-#define YAW_P_VAL 2
-#define YAW_I_VAL 5
-#define YAW_D_VAL 1
-
 
 
 /** Flight parameters **/
