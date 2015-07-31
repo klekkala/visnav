@@ -251,7 +251,29 @@ inline void initRC(){
   
 }
 
+void initMPU(){
+  
+  Wire.begin();
+  mpu.initialize();
+  devStatus = mpu.dmpInitialize();
+  if(devStatus == 0){
+  
+    mpu.setDMPEnabled(true);
+    attachInterrupt(0, dmpDataReady, RISING);
+    mpuIntStatus = mpu.getIntStatus();
+    packetSize = mpu.dmpGetFIFOPacketSize();
+    
+  }
+}
 
+
+inline void initBalancing(){
+
+  bal_axes = 0;
+  bal_ac = 0;
+  bal_bd = 0;
+
+}
 
 inline void initRegulators(){
 
