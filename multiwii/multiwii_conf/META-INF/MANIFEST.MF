@@ -1,0 +1,282 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Android)
+
+Name: res/layout/profile_name.xml
+SHA1-Digest: k/jlLsECCpzPtvisXMQ8rW5qFKU=
+
+Name: res/drawable-mdpi/ic_action_search.png
+SHA1-Digest: XjltJdEB3tvakTn9CN7KwdaNT68=
+
+Name: res/layout/box_gpsholdb.xml
+SHA1-Digest: dsKrVXyW/VH0H0dHIr2GQ//0WkQ=
+
+Name: res/layout/device_list.xml
+SHA1-Digest: JVxXUxVNCR6/wmL9iQoysk0zzY0=
+
+Name: res/layout/param_rc.xml
+SHA1-Digest: 3SoBzuEowYs110XPpgPFm0bFl4s=
+
+Name: res/layout/box_llightsb.xml
+SHA1-Digest: 81pP3cIrqWGFmEVnMl4fyHnedZQ=
+
+Name: res/layout/param_level.xml
+SHA1-Digest: ENPeMRGfx11YyuAdbE3gFHioG2k=
+
+Name: res/layout/param_pos.xml
+SHA1-Digest: QX1bQ8JNplKVG35jNfjndj9wkbc=
+
+Name: res/layout/param_gps.xml
+SHA1-Digest: 6yGdLsxfa0IPLP/cyKbnmODRkiQ=
+
+Name: res/layout/param_vel.xml
+SHA1-Digest: yR0PrxSfDAzPpaUtkF8eekO2Kag=
+
+Name: res/layout/params_buttons.xml
+SHA1-Digest: DSPBMEGWZel713OSxZCgk4oy00E=
+
+Name: res/layout/box_mag.xml
+SHA1-Digest: oDX69aCWU0LIARtZI5zLkmx/1aM=
+
+Name: res/layout/param_mag.xml
+SHA1-Digest: cFr+f56uIZ2bXWANt0Zpz9+v/Yw=
+
+Name: res/layout/version_chooser.xml
+SHA1-Digest: 6kOg/8PdPyWPgkyoIzJ7hEhyoUQ=
+
+Name: res/layout/device_name.xml
+SHA1-Digest: d6gSIX1IHwx/0CByPIplj5viUYA=
+
+Name: res/drawable/channelbars.xml
+SHA1-Digest: UVuITml0eg1ynYicYr4hipk3HVU=
+
+Name: res/layout/params_switches_20b.xml
+SHA1-Digest: XAtNN7dSGZhbcLdmXnRr5SlIjuU=
+
+Name: res/layout/box_beeperb.xml
+SHA1-Digest: OB6RuaAgsicD9IcdA+rWmGsE7Tg=
+
+Name: res/layout/box_armb.xml
+SHA1-Digest: EFsTpAq0RrZPKzC8CvbMLQRymOY=
+
+Name: res/drawable-ldpi/icon.png
+SHA1-Digest: M9w9noL8oTBjKAzOQi8AMs0Lueo=
+
+Name: res/layout/box_gpshold.xml
+SHA1-Digest: H+YguItYynGacj+Q8W4qlNnb7Mo=
+
+Name: res/drawable-mdpi/icon.png
+SHA1-Digest: M9w9noL8oTBjKAzOQi8AMs0Lueo=
+
+Name: res/drawable/sensor_off.xml
+SHA1-Digest: 8Iboi2e5lhI+y4c0xTq/AYxhe2o=
+
+Name: res/drawable/sensor_on.xml
+SHA1-Digest: ocPcvP45drybmKAG8mjlelrJg3I=
+
+Name: res/layout/params_header.xml
+SHA1-Digest: rVktpmLeVx5es7dNBN7iQEs3c1E=
+
+Name: res/layout/box_llights.xml
+SHA1-Digest: 9qpTixgYUiuRq3JnSgQnearzVaw=
+
+Name: res/layout/box_camstab.xml
+SHA1-Digest: wo3CeoH7FKjgFtfcFHJsMxgNEAs=
+
+Name: res/layout/params_values_21.xml
+SHA1-Digest: sV3iXkswZkdCaoPG4uWjSQ/EVG0=
+
+Name: res/layout/box_headadj.xml
+SHA1-Digest: azlnkTw9swhDyP7dLt3xPTaB/eI=
+
+Name: res/layout/param_palarm.xml
+SHA1-Digest: sDywkNZNMeZsbFfCe6QbI8gq/TE=
+
+Name: res/layout/statusbar.xml
+SHA1-Digest: IS/6Mqat+ROUSUnCMtbvQK3tY+k=
+
+Name: res/layout/params_switches_21.xml
+SHA1-Digest: qY3sJdiAJqv73fwDjyASdL+Py9k=
+
+Name: res/layout/box_passthru.xml
+SHA1-Digest: SnYs+jViLI/PV/6u7H9iC0Uu/5c=
+
+Name: res/layout/empty.xml
+SHA1-Digest: L8ThQAMpACvDqV6BytJEj1Q9KD8=
+
+Name: res/layout/box_gpshome.xml
+SHA1-Digest: i8Dj4Z/MQbarzpsCyIb4qyRnvMw=
+
+Name: res/layout/box_camstabb.xml
+SHA1-Digest: T7EbEDjE6NoSYknCHt9VqerJcVk=
+
+Name: res/layout/box_level.xml
+SHA1-Digest: hugRRt2lEADJgIJNP7DhXVCavxs=
+
+Name: res/layout/main.xml
+SHA1-Digest: mNhReeqS1cSfOO6vc9wKHKMezLU=
+
+Name: res/layout/param_yaw.xml
+SHA1-Digest: 0o55lWnl7RpJqByeX9ARdcoRiVs=
+
+Name: res/drawable/motorbars.xml
+SHA1-Digest: bY6FHt3igx7vg3nBUzpVeLeco40=
+
+Name: res/layout/param_pitch.xml
+SHA1-Digest: gaS4eqY/aQjnwIDM6WG5esHVTuw=
+
+Name: res/layout/params_switches_18.xml
+SHA1-Digest: o5OxWUjqyI3RFjIbzAVq1coUs08=
+
+Name: res/layout/valuechangedialog.xml
+SHA1-Digest: bFBRH1wXj0qK85yd0nYxJi34Bi8=
+
+Name: res/layout/box_barob.xml
+SHA1-Digest: TMi+4pqTkrVbWWdfP2AxW2PINME=
+
+Name: res/drawable-hdpi/ic_action_search.png
+SHA1-Digest: rOWnNxWCWKwkicf+FpYGMg1fX2Y=
+
+Name: res/layout/param_posr.xml
+SHA1-Digest: xVI9jIEDGb8j6iehVJQzXOV9+Ao=
+
+Name: res/drawable-xhdpi/ic_action_search.png
+SHA1-Digest: WzSVDDIHZpn0cFeuxgKRJete4TU=
+
+Name: res/layout/params_values_19.xml
+SHA1-Digest: j7y9LO8i9T1zt2AsNpOcCsT/RUY=
+
+Name: res/layout/params_values_17.xml
+SHA1-Digest: 2RDbrb2HzklROhQuR5ZJF/Qcxig=
+
+Name: res/drawable/no_sensor.xml
+SHA1-Digest: UkCjVySdUJPiz5HQkFaemfIbeeU=
+
+Name: res/layout/profile_load.xml
+SHA1-Digest: whzug0TUWyjZxcuR4uEsa4rkdt8=
+
+Name: res/layout/box_headadjb.xml
+SHA1-Digest: GpOkNa/O10arUyVJeRUGyl1yRrI=
+
+Name: res/layout/box_gpshomeb.xml
+SHA1-Digest: rHubANPGF6Gnv9PLxdTIFw6MXqY=
+
+Name: res/layout/box_headfree.xml
+SHA1-Digest: Q56NKFg5v0+n4PYzdxTQyrFyUjY=
+
+Name: res/layout/activity_mwc_gps.xml
+SHA1-Digest: c7ME0iLWdbWPmUEkkw5J5pxCD3o=
+
+Name: resources.arsc
+SHA1-Digest: bxx3s+0vJ0dM7u0shozMKImT47k=
+
+Name: res/layout/params_switches_19.xml
+SHA1-Digest: wIS70tFAihKtz/iGaFm+i1pnzbU=
+
+Name: res/layout/param_alt.xml
+SHA1-Digest: /e1bGP0w+Q/7MSa4kbGxiwagWuA=
+
+Name: res/layout/box_camtrig.xml
+SHA1-Digest: oXw7WBaEaTFuZlZ05zFshkR0UFw=
+
+Name: res/layout/sensor_graph.xml
+SHA1-Digest: hnrItsVje5KW9NIl2/+V4X5XWoE=
+
+Name: AndroidManifest.xml
+SHA1-Digest: gMxn6VkaHJCD7ojlePV/0OcWLc4=
+
+Name: res/layout/box_headfreeb.xml
+SHA1-Digest: i1tIpqZpFqZ1GqmaD12tSYbuhNA=
+
+Name: res/layout/box_magb.xml
+SHA1-Digest: vjlWCN3yqh1B3btCXY55BT17HxQ=
+
+Name: res/layout/params_values_18.xml
+SHA1-Digest: uYMc2mq0yYFlZetINGYf07S6dK4=
+
+Name: res/layout/param_roll.xml
+SHA1-Digest: ORRC34MWvHD9P6RP4eg8HRp1opw=
+
+Name: res/layout/profile_save.xml
+SHA1-Digest: G6bFEsuUGg4Bfe5sVlt6OWGRGDQ=
+
+Name: res/anim/slide_right.xml
+SHA1-Digest: tPANgsmx8JbvERGnf731+06+KWc=
+
+Name: res/layout/box_ledmax.xml
+SHA1-Digest: 8ms2l8VQheitV/COLSYAXelfvIM=
+
+Name: res/layout/monitor_buttons.xml
+SHA1-Digest: P7oiIyUURpYO6kXUQJaUinOGhUY=
+
+Name: res/drawable-xhdpi/icon.png
+SHA1-Digest: M9w9noL8oTBjKAzOQi8AMs0Lueo=
+
+Name: res/menu/settings_menu.xml
+SHA1-Digest: EdT3vhxEGqE/FVV4blD4/FiQJ0E=
+
+Name: res/layout/param_navr.xml
+SHA1-Digest: QTGqTrhtxUCupobS0IXvgHOTmhI=
+
+Name: res/layout/box_baro.xml
+SHA1-Digest: 7yok7Rvozgtx9NPvppAfLpFaZxs=
+
+Name: classes.dex
+SHA1-Digest: ykhU5CUZ9ws1J1+X1iHXv+0eVaY=
+
+Name: res/layout/param_thrpidatt.xml
+SHA1-Digest: pwBqHEGKRkh9xCDdzGS85Ls4+6U=
+
+Name: res/layout/box_arm.xml
+SHA1-Digest: xZaJQLoNbwkePUfC4F+5CRKvQA4=
+
+Name: res/layout/param_thr.xml
+SHA1-Digest: /RfKq77ImB04dOunS/BO07zxBEo=
+
+Name: res/layout/no_aux_support.xml
+SHA1-Digest: RRMeVYL9wye5DsMaH2aZObqi4JE=
+
+Name: res/menu/activity_mwc_gps.xml
+SHA1-Digest: yyDPSfKq+LW9JRU0fAYf4eLuU9I=
+
+Name: res/layout/box_table_headers.xml
+SHA1-Digest: e8dd4JUXXRBx7caF8nrISA8axtI=
+
+Name: res/layout/params_switches_21b.xml
+SHA1-Digest: 3jsZRo8/rr+TJW/EgdsQ0ixsNz0=
+
+Name: res/layout/box_camtrigb.xml
+SHA1-Digest: 0gEwDwi8aUxz/anIScQtYIPdkJc=
+
+Name: res/layout/box_beeper.xml
+SHA1-Digest: pJ5DSrzvhA5qZ3VbyKrv7wEDNIQ=
+
+Name: res/anim/slide_left.xml
+SHA1-Digest: KVkYplS90md/XRZDyYDnz8ppAOs=
+
+Name: res/layout/activity_params.xml
+SHA1-Digest: mk3BFDyIqDWsGrKUeJbjNyJg36M=
+
+Name: res/layout/params_values_20.xml
+SHA1-Digest: fSYJP+nQmtm8c9NSYwnQB5dfFWE=
+
+Name: res/layout/params_switches_20.xml
+SHA1-Digest: zbDrevBMf2VdX0HL2HlXtCHLbug=
+
+Name: res/layout/params_switches_17.xml
+SHA1-Digest: o5OxWUjqyI3RFjIbzAVq1coUs08=
+
+Name: res/layout/box_levelb.xml
+SHA1-Digest: lb/e04h7uBv+/oj76XowIpc4YrM=
+
+Name: res/drawable-hdpi/icon.png
+SHA1-Digest: M9w9noL8oTBjKAzOQi8AMs0Lueo=
+
+Name: res/layout/box_ledmaxb.xml
+SHA1-Digest: FF8YG8dleVFNjuq/bHOmix1TpS0=
+
+Name: res/layout/box_passthrub.xml
+SHA1-Digest: IqQCX5yuuwJMWrdAXuHacCOxTNc=
+
+Name: res/layout/channels_values.xml
+SHA1-Digest: /e0kP9Bb+fWo7DrUvzvuBUqHImM=
+
