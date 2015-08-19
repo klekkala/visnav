@@ -11,7 +11,7 @@
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu wheezy main" > /etc/apt/sources.list.d/ros-latest.list'
 wget https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -O - | sudo apt-key add -
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get upgrade -y
 
 sudo apt-get install python-setuptools python-pip python-yaml python-argparse python-distribute python-docutils python-dateutil python-setuptools python-six
 sudo pip install rosdep rosinstall_generator wstool rosinstall
@@ -34,7 +34,7 @@ wstool init src indigo-ros_comm-wet.rosinstall
 
 
 mkdir ~/ros_catkin_ws/external_src
-sudo apt-get install checkinstall cmake
+sudo apt-get install checkinstall cmake -y
 sudo sh -c 'echo "deb-src http://mirrordirector.raspbian.org/raspbian/ testing main contrib non-free rpi" >> /etc/apt/sources.list'
 sudo apt-get update
 
@@ -63,7 +63,7 @@ sudo checkinstall make install
 ###liburdfdom-dev:
 
 cd ~/ros_catkin_ws/external_src
-sudo apt-get install libboost-test-dev libtinyxml-dev
+sudo apt-get install libboost-test-dev libtinyxml-dev -y
 git clone https://github.com/ros/urdfdom.git
 cd urdfdom
 cmake .
@@ -72,7 +72,7 @@ sudo checkinstall make install
 ###collada-dom-dev:
 
 cd ~/ros_catkin_ws/external_src
-sudo apt-get install libboost-filesystem-dev libxml2-dev
+sudo apt-get install libboost-filesystem-dev libxml2-dev -y
 wget http://downloads.sourceforge.net/project/collada-dom/Collada%20DOM/Collada%20DOM%202.4/collada-dom-2.4.0.tgz
 tar -xzf collada-dom-2.4.0.tgz
 cd collada-dom-2.4.0
