@@ -33,7 +33,7 @@
 	D03 <--> A09(ROLL)
 	D02 <--> A08(THROTTLE)
 
-   **USB to Raspberry
+  ***USB to Raspberry
 */
 
 /** Pin Macros **/
