@@ -19,19 +19,19 @@
 	5V  <--> CH_PD
 	GND <--> GND
 	D13 <--> TX 
-	D12 <--> RX
+	D2 <--> RX
 
    **Multiwii Flight Controller
-	D11 <--> 33(CAM PITCH)
-	D10 <--> 32(CAM ROLL)  
-	D09 <--> A15(AUX-4) 
-	D08 <--> A14(AUX-3)
-	D07 <--> A13(AUX-2)
-	D06 <--> A12(AUX-1)
-	D05 <--> A11(YAW)
-	D04 <--> A10(PITCH)
-	D03 <--> A09(ROLL)
-	D02 <--> A08(THROTTLE)
+	D12 <--> 33(CAM PITCH)
+	D11 <--> 32(CAM ROLL)  
+	D10 <--> A15(AUX-4) 
+	D09 <--> A14(AUX-3)
+	D08 <--> A13(AUX-2)
+	D07 <--> A12(AUX-1)
+	D06 <--> A11(YAW)
+	D05 <--> A10(PITCH)
+	D04 <--> A09(ROLL)
+	D03 <--> A08(THROTTLE)
 
   ***USB to Raspberry
 **/
