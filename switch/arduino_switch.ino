@@ -34,7 +34,7 @@
 	D02 <--> A08(THROTTLE)
 
   ***USB to Raspberry
-*/
+**/
 
 /** Pin Macros **/
 #define CAM_PITCH 11 
