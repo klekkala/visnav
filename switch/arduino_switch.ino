@@ -15,8 +15,8 @@
 
 /****  Arduino Pin configuration
    **ESP8266(ESP-07) Wifi Serial Adapter
-	5V  <--> VCC
-	5V  <--> CH_PD
+	3.3V  <--> VCC
+	3.3V  <--> CH_PD
 	GND <--> GND
 	D13 <--> TX 
 	D2 <--> RX
