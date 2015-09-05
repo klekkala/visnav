@@ -1,3 +1,5 @@
+### Author: Kiran Kumar Lekkala ###
+
 #ifndef QUADARDU
 #define QUADARDU
 
