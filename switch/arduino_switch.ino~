@@ -240,6 +240,18 @@ void calculateVelocities(){
 }
 
 
+inline void initRC(){
+  pinMode(PWR, OUTPUT);
+  digitalWrite(PWR, HIGH);
+  
+  // FIVE FUCKING INTERRUPTS !!!
+  PCintPort::attachInterrupt(1, rcInterrupt1, CHANGE);
+  PCintPort::attachInterrupt(2, rcInterrupt2, CHANGE);
+  PCintPort::attachInterrupt(3, rcInterrupt3, CHANGE);
+  PCintPort::attachInterrupt(4, rcInterrupt4, CHANGE);
+  PCintPort::attachInterrupt(5, rcInterrupt5, CHANGE);
+  
+}
 
 
 
