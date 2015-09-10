@@ -111,10 +111,6 @@
 
 
 
-/* Interrupt lock
- *
- */
- 
 boolean interruptLock = false;
 
 /** RC variables **/
