@@ -149,9 +149,6 @@ PID rollReg(&ypr[2], &bal_ac, &ch1, ROLL_P_VAL, ROLL_I_VAL, ROLL_D_VAL, REVERSE)
 PID yawReg(&ypr[0], &bal_axes, &ch4, YAW_P_VAL, YAW_I_VAL, YAW_D_VAL, DIRECT);
 
 
-/*  Filter variables
- *
- */
  
 float ch1Last, ch2Last, ch4Last, velocityLast;
 

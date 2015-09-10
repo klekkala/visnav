@@ -109,8 +109,6 @@
 #define PID_YAW_INFLUENCE 20
 
 
-
-
 boolean interruptLock = false;
 
 /** RC variables **/
