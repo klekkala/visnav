@@ -401,6 +401,7 @@ inline void releaseLock(){
   interruptLock = false;
 }
 
+/** Function to handle serial data **/
 void handleSerial() {
   // Handle Serial Data
   if (Serial.available()) {

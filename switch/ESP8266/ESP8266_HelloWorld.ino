@@ -266,8 +266,8 @@ const unsigned int defaultPulseWidths[CHANNELS] = {
   HALF_PULSE_TIME,     // Pitch
   MIN_PULSE_TIME,      // Yaw
   
-  MAX_PULSE_TIME,     // AUX1 (MODE in Aeroquad)
-  MAX_PULSE_TIME,     // AUX2 (ALTITUDE in Aeroquad)
+  MAX_PULSE_TIME,     // AUX1 
+  MAX_PULSE_TIME,     // AUX2 
   MAX_PULSE_TIME,     // AUX3
   MAX_PULSE_TIME      // AUX4
 };
