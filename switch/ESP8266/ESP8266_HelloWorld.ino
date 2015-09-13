@@ -316,9 +316,6 @@ void loop(){
     /*gap*/
       
   }
-  
-  getYPR();                          
-  computePID();
   calculateVelocities();
   pin_pwm();
   
