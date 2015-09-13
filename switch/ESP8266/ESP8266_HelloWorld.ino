@@ -295,7 +295,6 @@ float ch1Last, ch2Last, ch4Last, velocityLast;
 void setup(){
   
   pinMode(PIN_LED, OUTPUT);
-  pinMode(PIN_PPM, OUTPUT);
 
   Serial.begin(38400);
   
@@ -320,8 +319,6 @@ void loop(){
   pin_pwm();
   
 }
-
-
 
 /** calculate Velocities function **/
 

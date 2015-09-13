@@ -316,14 +316,10 @@ void loop(){
     /*gap*/
       
   }
-                          
-  computePID();
   calculateVelocities();
   pin_pwm();
   
 }
-
-
 
 /** calculate Velocities function **/
 
