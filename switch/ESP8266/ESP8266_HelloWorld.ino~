@@ -15,6 +15,30 @@
 //HardwareSerial & espSerial = Serial1;
 
 ////UNO & M328P
+
+/****  Arduino Pin configuration
+   **ESP8266(ESP-07) Wifi Serial Adapter
+	3.3V  <--> VCC
+	3.3V  <--> CH_PD
+	GND <--> GND
+	D13 <--> TX 
+	D2 <--> RX
+
+   **Multiwii Flight Controller
+	D12 <--> 33(CAM PITCH)
+	D11 <--> 32(CAM ROLL)  
+	D10 <--> A15(AUX-4) 
+	D09 <--> A14(AUX-3)
+	D08 <--> A13(AUX-2)
+	D07 <--> A12(AUX-1)
+	D06 <--> A11(YAW)
+	D05 <--> A10(PITCH)
+	D04 <--> A09(ROLL)
+	D03 <--> A08(THROTTLE)
+
+  ***USB to Raspberry
+**/
+
 #include <SoftwareSerial.h>
 SoftwareSerial dbgTerminal(2, 13); // RX, TX
 HardwareSerial & espSerial = Serial;
