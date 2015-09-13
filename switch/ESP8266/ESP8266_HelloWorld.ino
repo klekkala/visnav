@@ -253,6 +253,8 @@ void setupWiFi() {
 #define PID_ROLL_INFLUENCE 20
 #define PID_YAW_INFLUENCE 20
 
+/** Channels **/
+#define CHANNELS 8
 
 boolean interruptLock = false;
 
