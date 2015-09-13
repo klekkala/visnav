@@ -258,9 +258,6 @@ void setupWiFi() {
 
 boolean interruptLock = false;
 
-/** RC variables **/
-
-float ch1, ch2, ch3, ch4, ch5;         // RC channel inputs
 
 const unsigned int defaultPulseWidths[CHANNELS] = {
   MIN_PULSE_TIME,      // Throttle
