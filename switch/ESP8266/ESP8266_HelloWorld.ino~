@@ -204,7 +204,7 @@ void setupWiFi() {
 #define CH6 AUX-2 
 #define CH7 AUX-3
 #define CH8 AUX-4
-#define CH4 YAW 5
+#define CH4 YAW
 #define CH2 PITCH
 #define CH1 ROLL
 #define CH3 THROTTLE

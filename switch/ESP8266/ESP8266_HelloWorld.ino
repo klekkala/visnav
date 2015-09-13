@@ -326,8 +326,7 @@ void loop(){
   getYPR();                          
   computePID();
   calculateVelocities();
-  updateMotors(
-);
+  pin_pwm();
   
 }
 
