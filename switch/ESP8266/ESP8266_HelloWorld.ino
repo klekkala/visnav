@@ -288,15 +288,10 @@ Servo a,b,c,d;
  *
  */
 
-
-
  
 float ch1Last, ch2Last, ch4Last, velocityLast;
 
-/*  Setup function
- *
- */
-
+/** Setup function **/
 void setup(){
   
   pinMode(PIN_LED, OUTPUT);
@@ -372,20 +367,6 @@ void calculateVelocities(){
   
 }
 
-
-
-inline void initRegulators(){
-
-  pitchReg.SetMode(AUTOMATIC);
-  pitchReg.SetOutputLimits(-PID_PITCH_INFLUENCE, PID_PITCH_INFLUENCE);
-  
-  rollReg.SetMode(AUTOMATIC);
-  rollReg.SetOutputLimits(-PID_ROLL_INFLUENCE, PID_ROLL_INFLUENCE);
-  
-  yawReg.SetMode(AUTOMATIC);
-  yawReg.SetOutputLimits(-PID_YAW_INFLUENCE, PID_YAW_INFLUENCE);
-
-}
 
 
 inline void acquireLock(){
