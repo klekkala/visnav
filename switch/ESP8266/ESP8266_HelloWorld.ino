@@ -285,13 +285,10 @@ int v_ac, v_bd;                        // velocity of axes
 
 Servo a,b,c,d;
 
-/*  PID variables
+/*  PID variables and regulators: Open a socket and get the variables for the configuration app
  *
  */
 
-PID pitchReg(&ypr[1], &bal_bd, &ch2, PITCH_P_VAL, PITCH_I_VAL, PITCH_D_VAL, REVERSE);
-PID rollReg(&ypr[2], &bal_ac, &ch1, ROLL_P_VAL, ROLL_I_VAL, ROLL_D_VAL, REVERSE);
-PID yawReg(&ypr[0], &bal_axes, &ch4, YAW_P_VAL, YAW_I_VAL, YAW_D_VAL, DIRECT);
 
 
  
