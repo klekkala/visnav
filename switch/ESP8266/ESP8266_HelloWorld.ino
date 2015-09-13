@@ -326,11 +326,7 @@ void loop(){
 
 
 
-/*  calculateVelocities function
- *  
- *  calculates the velocities of every motor
- *  using the PID output
- */
+/** calculate Velocities function **/
 
 void calculateVelocities(){
 
@@ -366,7 +362,6 @@ void calculateVelocities(){
   }
   
 }
-
 
 
 inline void acquireLock(){
