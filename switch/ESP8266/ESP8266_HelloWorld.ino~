@@ -22,8 +22,8 @@ HardwareSerial & espSerial = Serial;
 
 #define BUFFER_SIZE 512
 
-#define SSID  "YOUR_SSID"      // change this to match your WiFi SSID
-#define PASS  "YOUR_PASS"  // change this to match your WiFi password
+#define SSID  "ESP8266"      // change this to match your WiFi SSID
+#define PASS  "qwertyuiop"  // change this to match your WiFi password
 #define PORT_SERVER  "8080"           // using port 8080 by default
 
 char buffer[BUFFER_SIZE];
