@@ -287,7 +287,6 @@ Servo a,b,c,d;
 /*  PID variables and regulators: Open a socket and get the variables for the configuration app
  *
  */
-
  
 float ch1Last, ch2Last, ch4Last, velocityLast;
 
