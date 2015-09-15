@@ -312,23 +312,7 @@ void loop(){
   
   while(Interrupt && fifoCount < packetSize){
      
-    /*gap*/
-      
-  }
-  calculateVelocities();
-  pin_pwm();
-
-void setup() {
-  // Open serial communications and wait for port to open:
-  Serial.begin(9600);
-
-
-  // Start each software serial port
-  portOne.begin(9600);
-  portTwo.begin(9600);
-}
-
-void loop() {
+    void loop() {
   // By default, the last intialized port is listening.
   // when you want to listen on a port, explicitly select it:
   portOne.listen();
@@ -356,6 +340,22 @@ void loop() {
   // blank line to separate data from the two ports:
   Serial.println();
 }
+      
+  }
+  calculateVelocities();
+  pin_pwm();
+
+void setup() {
+  // Open serial communications and wait for port to open:
+  Serial.begin(9600);
+
+
+  // Start each software serial port
+  portOne.begin(9600);
+  portTwo.begin(9600);
+}
+
+
   
 }
 
