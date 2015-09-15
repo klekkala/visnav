@@ -314,10 +314,10 @@ void loop(){
 
   Serial.listen(); //Listening from RPi
   Serial.println("Data from port one:");
-  // while there is data coming in, read it
-  // and send to the hardware serial port:
+
+  //Listening from esp8266
   while (esp8266_port.available() > 0) {
-    char inByte = portOne.read();
+    char inByte = esp8266_port.read();
     Serial.write(inByte);
   }
 
