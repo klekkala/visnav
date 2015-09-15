@@ -40,7 +40,7 @@
 **/
 
 #include <SoftwareSerial.h>
-SoftwareSerial dbgTerminal(2, 13); // RX, TX
+SoftwareSerial esp8266_port(2, 13); // RX, TX
 HardwareSerial & espSerial = Serial;
 
 
@@ -297,7 +297,7 @@ void setup(){
   pinMode(PIN_LED, OUTPUT);
 
   Serial.begin(38400); //Serial Port for Raspberry Pi: Incoming data from RPi
-  
+  esp8266_pipe
   setDefaultPulseWidths();
   
   // Start timer with sync pulse
@@ -312,12 +312,12 @@ void loop(){
   
   while(Interrupt && fifoCount < packetSize){
 
-  portOne.listen();
+  Serial.listen(); //Listening from RPi
   Serial.println("Data from port one:");
-  // while there is data coming in, read it
-  // and send to the hardware serial port:
-  while (portOne.available() > 0) {
-    char inByte = portOne.read();
+
+  //Listening from esp8266
+  while (esp8266_port.available() > 0) {
+    char inByte = esp8266_port.read();
     Serial.write(inByte);
   }
 
