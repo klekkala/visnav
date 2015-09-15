@@ -324,8 +324,6 @@ void loop(){
   // blank line to separate data from the two ports:
   Serial.println();
 
-  // Now listen on the second port
-  portTwo.listen();
   // while there is data coming in, read it
   // and send to the hardware serial port:
   Serial.println("Data from port two:");

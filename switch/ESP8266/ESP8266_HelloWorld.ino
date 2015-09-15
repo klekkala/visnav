@@ -339,8 +339,7 @@ void loop(){
   }
   calculateVelocities();
   pin_pwm();
-  
-}
+  }
 
 /** calculate Velocities function **/
 
