@@ -296,7 +296,7 @@ void setup(){
   
   pinMode(PIN_LED, OUTPUT);
 
-  Serial.begin(38400);
+  Serial.begin(38400); //Serial Port for Raspberry Pi: Incoming data from RPi
   
   setDefaultPulseWidths();
   
@@ -311,10 +311,7 @@ void setup(){
 void loop(){
   
   while(Interrupt && fifoCount < packetSize){
-     
-    void loop() {
-  // By default, the last intialized port is listening.
-  // when you want to listen on a port, explicitly select it:
+
   portOne.listen();
   Serial.println("Data from port one:");
   // while there is data coming in, read it
@@ -344,18 +341,6 @@ void loop(){
   }
   calculateVelocities();
   pin_pwm();
-
-void setup() {
-  // Open serial communications and wait for port to open:
-  Serial.begin(9600);
-
-
-  // Start each software serial port
-  portOne.begin(9600);
-  portTwo.begin(9600);
-}
-
-
   
 }
 
