@@ -344,11 +344,13 @@ inline void releaseLock(){
 }
 
 void pwm_pin(const int LV, const int LH, const int RV, const int RH, const int AUX){
-    // Convert char (0-250) to pulse width (1000-2000)
-    for (int i=0; i<CHANNELS; i++) {
-        pulseWidths[i] = map(buffer[i], MIN_TRANSMITTER_VALUE, MAX_TRANSMITTER_VALUE, 
-                MIN_RECIEVER_VALUE, MAX_RECIEVER_VALUE);
-    }
+    // Convert char (0-250) to pulse width
+
+        pulseWidths[i] = map(buffer[i], MIN_TRANSMITTER_VALUE, MAX_TRANSMITTER_VALUE, MIN_RECIEVER_VALUE, MAX_RECIEVER_VALUE);
+	pulseWidths[i] = map(buffer[i], MIN_TRANSMITTER_VALUE, MAX_TRANSMITTER_VALUE, MIN_RECIEVER_VALUE, MAX_RECIEVER_VALUE);
+	pulseWidths[i] = map(buffer[i], MIN_TRANSMITTER_VALUE, MAX_TRANSMITTER_VALUE, MIN_RECIEVER_VALUE, MAX_RECIEVER_VALUE);
+	pulseWidths[i] = map(buffer[i], MIN_TRANSMITTER_VALUE, MAX_TRANSMITTER_VALUE, MIN_RECIEVER_VALUE, MAX_RECIEVER_VALUE);
+	pulseWidths[i] = map(buffer[i], MIN_TRANSMITTER_VALUE, MAX_TRANSMITTER_VALUE, MIN_RECIEVER_VALUE, MAX_RECIEVER_VALUE);
 }
 
 #endif
