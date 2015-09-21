@@ -313,36 +313,35 @@ void loop(){
 
   Serial.listen(); //Listening from RPi
   Serial.println("Data from port one:");
+  int counter=0;
 
   //Listening from esp8266
   while (esp8266_port.available() > 0 && counter<5) {
     char inByte = esp8266_port.read();
     
     switch(counter){
-    
+        case(counter==0):
+            Serial.println("LV byte");
 
+        case(counter==1):
+            Serial.println("LH byte");
+            '
+        case(counter==2):
+            Serial.println("RV byte");
 
+        case(counter==3):
+            Serial.println("RH byte");
 
+        case(counter==4):
+            Serial.println("AUX byte");
+
+        case(counter==5):
+            counter=0;
+
+        counter++;
     }
-Serial.write(inByte);
-    
-  }
 
-  // blank line to separate data from the two ports:
-  Serial.println();
-
-  // while there is data coming in, read it
-  // and send to the hardware serial port:
-  Serial.println("Data from port two:");
-  while (portTwo.available() > 0) {
-    char inByte = portTwo.read();
-    Serial.write(inByte);
-  }
-
-  // blank line to separate data from the two ports:
-  Serial.println();
-}
-      
+    Serial.write(inByte);   
   }
   calculateVelocities();
   pin_pwm();
@@ -395,31 +394,10 @@ inline void releaseLock(){
   interruptLock = false;
 }
 
-/** Function to handle serial data **/
-void handleSerial() {
-  // Handle Serial Data
-  if (Serial.available()) {
-    lastReceived = millis();
-    currentByte = Serial.read();
-
-    if (currentByte == 254) {
-      // Either packet is done, or we got corrupt data. Reset the packet
-      bytesReceived = 0;
-    } else {
-      buffer[bytesReceived] = currentByte;
-      bytesReceived++;
-    }
-
-    if (bytesReceived == CHANNELS) {
-      bytesReceived = 0;
-      armed = true;
-
       // Convert char (0-250) to pulse width (1000-2000)
       for (int i=0; i<CHANNELS; i++) {
         pulseWidths[i] = map(buffer[i], MIN_RECEIVER_VALUE, MAX_RECEIVER_VALUE, 
                                         MIN_PULSE_TIME, MAX_PULSE_TIME);
-      }
-    }
   }
 }
 
