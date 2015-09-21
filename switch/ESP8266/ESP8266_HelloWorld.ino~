@@ -377,11 +377,12 @@ void calculateVelocities(){
  
 }
 
-
+//Acquire Lock
 inline void acquireLock(){
   interruptLock = true; 
 }
 
+//Release Lock
 inline void releaseLock(){
   interruptLock = false;
 }

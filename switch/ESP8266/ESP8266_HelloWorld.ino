@@ -315,9 +315,14 @@ void loop(){
   Serial.println("Data from port one:");
 
   //Listening from esp8266
-  while (esp8266_port.available() > 0) {
+  while (esp8266_port.available() > 0 && counter<5) {
     char inByte = esp8266_port.read();
+    
+    switch(counter):
+    	case(counter=1):
+    		Serial.println("LV byte");
     Serial.write(inByte);
+    
   }
 
   // blank line to separate data from the two ports:
