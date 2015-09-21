@@ -83,13 +83,18 @@
 
 #define ROUNDING_BASE 50
 
+/** Transmitter settings **/
+#define SERIAL_BAUD 38400
+#define RECEIVER_TIMEOUT 1500 // 1.5s
+#define MIN_TRANSMITTER_VALUE 0
+#define MAX_TRANSMITTER_VALUE 255 
 
 /** Reciever settings **/
 
 #define SERIAL_BAUD 38400
 #define RECEIVER_TIMEOUT 1500 // 1.5s
 #define MIN_RECEIVER_VALUE 0
-#define MAX_RECEIVER_VALUE 250
+#define MAX_RECEIVER_VALUE 255
 
 
 /** Flight parameters **/
@@ -338,7 +343,7 @@ inline void releaseLock(){
     interruptLock = false;
 }
 
-void pwm_pin(){
+void pwm_pin(const int LV, const int LH, const int RV, const int RH, const int AUX){
     // Convert char (0-250) to pulse width (1000-2000)
     for (int i=0; i<CHANNELS; i++) {
         pulseWidths[i] = map(buffer[i], MIN_TRANSMITTER_VALUE, MAX_TRANSMITTER_VALUE, 
