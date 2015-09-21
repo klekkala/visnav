@@ -1,20 +1,7 @@
-/* ====== esp8266 HelloWorld Demo ======
- * Print out analog values
- * (Updated Dec 14, 2014)
- * ==========================
- *
- * Change SSID and PASS to match your WiFi settings.
- * The IP address is displayed to soft serial upon successful connection.
- *
- * Ray Wang @ Rayshobby LLC
- * http://rayshobby.net/?p=9734
- */
+/**Author: Kiran Kumar Lekkala **/
+/**Description: switch file multiplexing the values from Raspberry pi and the remote**/
+/**Date: 10 June 2015 **/
 
-//Leonardo
-//Serial_ & Serial = Serial;
-//HardwareSerial & espSerial = Serial1;
-
-////UNO & M328P
 
 /****  Arduino Pin configuration
    **ESP8266(ESP-07) Wifi Serial Adapter
@@ -39,6 +26,120 @@
   ***USB to Raspberry
 **/
 
+#include <Servo.h>
+#include <Wire.h>
+#include <I2Cdev.h>
+#include <helper_3dmath.h>
+#include <MPU6050_6Axis_MotionApps20.h>
+#include <PID_v1.h>
+#include <PinChangeInt.h>
+#include <PinChangeIntConfig.h>
+#include <SoftwareSerial.h>
+
+/**Pin Macros **/
+#define CAM_PITCH 11 
+#define CAM_ROLL 10
+#define AUX-1 9
+#define AUX-2 8
+#define AUX-3 7
+#define AUX-4 6
+#define YAW 5
+#define PITCH 4
+#define ROLL 3
+#define THROTTLE 2
+
+
+/*** Alternate MACROS ***/
+
+#define CH5 AUX-1
+#define CH6 AUX-2 
+#define CH7 AUX-3
+#define CH8 AUX-4
+#define CH4 YAW
+#define CH2 PITCH
+#define CH1 ROLL
+#define CH3 THROTTLE
+
+/** H,M,L for Channels **/
+#define HIGH_CH1 1000
+#define MID_CH1 (HIGH_CH1 + LOW_CH1) / 2
+#define LOW_CH1 3000
+
+#define HIGH_CH2 1000
+#define MID_CH2 (HIGH_CH2 + LOW_CH2) / 2
+#define LOW_CH2 3000
+
+#define HIGH_CH3 1000
+#define MID_CH3 (HIGH_CH3 + LOW_CH3) / 2
+#define LOW_CH3 3000
+
+#define HIGH_CH4 1000
+#define MID_CH4 (HIGH_CH4 + LOW_CH4) / 2
+#define LOW_CH4 3000
+
+#define HIGH_CH5 1000
+#define MID_CH5 (HIGH_CH5 + LOW_CH5) / 2
+#define LOW_CH5 3000
+
+#define ROUNDING_BASE 50
+
+
+/** Reciever settings **/
+
+#define SERIAL_BAUD 38400
+#define RECEIVER_TIMEOUT 1500 // 1.5s
+#define MIN_RECEIVER_VALUE 0
+#define MAX_RECEIVER_VALUE 250
+
+
+/** Flight parameters **/
+
+#define PITCH_MIN -30
+#define PITCH_MAX 30
+#define ROLL_MIN -30
+#define ROLL_MAX 30
+#define YAW_MIN -180
+#define YAW_MAX 180
+#define PID_PITCH_INFLUENCE 20
+#define PID_ROLL_INFLUENCE 20
+#define PID_YAW_INFLUENCE 20
+
+/** Channels **/
+#define CHANNELS 8
+
+boolean interruptLock = false;
+
+
+const unsigned int defaultPulseWidths[CHANNELS] = {
+  MIN_PULSE_TIME,      // Throttle
+  HALF_PULSE_TIME,     // Roll
+  HALF_PULSE_TIME,     // Pitch
+  MIN_PULSE_TIME,      // Yaw
+  
+  MAX_PULSE_TIME,     // AUX1 
+  MAX_PULSE_TIME,     // AUX2 
+  MAX_PULSE_TIME,     // AUX3
+  MAX_PULSE_TIME      // AUX4
+};
+
+
+/** Motor control variables **/
+
+int velocity;                          // global velocity
+
+float bal_ac, bal_bd;                 // motor balances can vary between -100 & 100
+float bal_axes;                       // throttle balance between axes -100:ac , +100:bd
+
+int va, vb, vc, vd;                    //velocities
+int v_ac, v_bd;                        // velocity of axes
+
+Servo a,b,c,d;
+
+/*  PID variables and regulators: Open a socket and get the variables for the configuration app
+ *
+ */
+ 
+float ch1Last, ch2Last, ch4Last, velocityLast;
 #include <SoftwareSerial.h>
 SoftwareSerial esp8266_port(2, 13); // RX, TX
 HardwareSerial & espSerial = Serial;
@@ -190,113 +291,7 @@ void setupWiFi() {
 
 }
 
-  ***USB to Raspberry
-**/
 
-/** Pin Macros **/
-#define CAM_PITCH 11 
-#define CAM_ROLL 10
-#define AUX-1 9
-#define AUX-2 8
-#define AUX-3 7
-#define AUX-4 6
-#define YAW 5
-#define PITCH 4
-#define ROLL 3
-#define THROTTLE 2
-
-
-/*** Alternate MACROS ***/
-
-#define CH5 AUX-1
-#define CH6 AUX-2 
-#define CH7 AUX-3
-#define CH8 AUX-4
-#define CH4 YAW
-#define CH2 PITCH
-#define CH1 ROLL
-#define CH3 THROTTLE
-
-/** H,M,L for Channels **/
-#define HIGH_CH1 1000
-#define MID_CH1 (HIGH_CH1 + LOW_CH1) / 2
-#define LOW_CH1 3000
-
-#define HIGH_CH2 1000
-#define MID_CH2 (HIGH_CH2 + LOW_CH2) / 2
-#define LOW_CH2 3000
-
-#define HIGH_CH3 1000
-#define MID_CH3 (HIGH_CH3 + LOW_CH3) / 2
-#define LOW_CH3 3000
-
-#define HIGH_CH4 1000
-#define MID_CH4 (HIGH_CH4 + LOW_CH4) / 2
-#define LOW_CH4 3000
-
-#define HIGH_CH5 1000
-#define MID_CH5 (HIGH_CH5 + LOW_CH5) / 2
-#define LOW_CH5 3000
-
-#define ROUNDING_BASE 50
-
-
-/** Reciever settings **/
-
-#define SERIAL_BAUD 38400
-#define RECEIVER_TIMEOUT 1500 // 1.5s
-#define MIN_RECEIVER_VALUE 0
-#define MAX_RECEIVER_VALUE 250
-
-
-/** Flight parameters **/
-
-#define PITCH_MIN -30
-#define PITCH_MAX 30
-#define ROLL_MIN -30
-#define ROLL_MAX 30
-#define YAW_MIN -180
-#define YAW_MAX 180
-#define PID_PITCH_INFLUENCE 20
-#define PID_ROLL_INFLUENCE 20
-#define PID_YAW_INFLUENCE 20
-
-/** Channels **/
-#define CHANNELS 8
-
-boolean interruptLock = false;
-
-
-const unsigned int defaultPulseWidths[CHANNELS] = {
-  MIN_PULSE_TIME,      // Throttle
-  HALF_PULSE_TIME,     // Roll
-  HALF_PULSE_TIME,     // Pitch
-  MIN_PULSE_TIME,      // Yaw
-  
-  MAX_PULSE_TIME,     // AUX1 
-  MAX_PULSE_TIME,     // AUX2 
-  MAX_PULSE_TIME,     // AUX3
-  MAX_PULSE_TIME      // AUX4
-};
-
-
-/** Motor control variables **/
-
-int velocity;                          // global velocity
-
-float bal_ac, bal_bd;                 // motor balances can vary between -100 & 100
-float bal_axes;                       // throttle balance between axes -100:ac , +100:bd
-
-int va, vb, vc, vd;                    //velocities
-int v_ac, v_bd;                        // velocity of axes
-
-Servo a,b,c,d;
-
-/*  PID variables and regulators: Open a socket and get the variables for the configuration app
- *
- */
- 
-float ch1Last, ch2Last, ch4Last, velocityLast;
 
 void loop(){
   
