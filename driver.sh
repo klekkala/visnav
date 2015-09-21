@@ -10,6 +10,7 @@ mkdir ~/ fuerte_workspace
 export ROS_PACKAGE_PATH = $ROS_PACKAGE_PATH :~/
 fuerte_workspace
 
+
 cd ~/ fuerte_workspace
 git clone https :// github . com / tum - vision /
 ardrone_autonomy . git
