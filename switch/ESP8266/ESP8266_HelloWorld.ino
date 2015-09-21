@@ -107,292 +107,244 @@
 /** Channels **/
 #define CHANNELS 8
 
+
+/**ESP8266 config**/
+#define BUFFER_SIZE 512
+#define SSID  "ESP8266" 
+#define PASS  "qwertyuiop" 
+#define PORT_SERVER  "8080"  
+
 boolean interruptLock = false;
 
 
 const unsigned int defaultPulseWidths[CHANNELS] = {
-  MIN_PULSE_TIME,      // Throttle
-  HALF_PULSE_TIME,     // Roll
-  HALF_PULSE_TIME,     // Pitch
-  MIN_PULSE_TIME,      // Yaw
-  
-  MAX_PULSE_TIME,     // AUX1 
-  MAX_PULSE_TIME,     // AUX2 
-  MAX_PULSE_TIME,     // AUX3
-  MAX_PULSE_TIME      // AUX4
+    MIN_PULSE_TIME,      // Throttle
+    HALF_PULSE_TIME,     // Roll
+    HALF_PULSE_TIME,     // Pitch
+    MIN_PULSE_TIME,      // Yaw
+
+    MAX_PULSE_TIME,     // AUX1 
+    MAX_PULSE_TIME,     // AUX2 
+    MAX_PULSE_TIME,     // AUX3
+    MAX_PULSE_TIME      // AUX4
 };
 
 
-/** Motor control variables **/
-
-int velocity;                          // global velocity
-
-float bal_ac, bal_bd;                 // motor balances can vary between -100 & 100
-float bal_axes;                       // throttle balance between axes -100:ac , +100:bd
-
-int va, vb, vc, vd;                    //velocities
-int v_ac, v_bd;                        // velocity of axes
-
-Servo a,b,c,d;
 
 /*  PID variables and regulators: Open a socket and get the variables for the configuration app
  *
  */
- 
+
 float ch1Last, ch2Last, ch4Last, velocityLast;
 SoftwareSerial esp8266_port(2, 13); // RX, TX
 HardwareSerial & espSerial = Serial;
-
-
-#define BUFFER_SIZE 512
-
-#define SSID  "ESP8266"      // change this to match your WiFi SSID
-#define PASS  "qwertyuiop"  // change this to match your WiFi password
-#define PORT_SERVER  "8080"           // using port 8080 by default
 
 char buffer[BUFFER_SIZE];
 
 // By default we are looking for OK\r\n
 char OKrn[] = "OK\r\n";
 byte wait_for_espSerial_respSerialonse(int timeout, char* term = OKrn) {
-  unsigned long t = millis();
-  bool found = false;
-  int i = 0;
-  int len = strlen(term);
-  // wait for at most timeout milliseconds
-  // or if OK\r\n is found
-  while (millis() < t + timeout) {
-    if (espSerial.available()) {
-      buffer[i++] = espSerial.read();
-      if (i >= len) {
-        if (strncmp(buffer + i - len, term, len) == 0) {
-          found = true;
-          break;
+    unsigned long t = millis();
+    bool found = false;
+    int i = 0;
+    int len = strlen(term);
+    // wait for at most timeout milliseconds
+    // or if OK\r\n is found
+    while (millis() < t + timeout) {
+        if (espSerial.available()) {
+            buffer[i++] = espSerial.read();
+            if (i >= len) {
+                if (strncmp(buffer + i - len, term, len) == 0) {
+                    found = true;
+                    break;
+                }
+            }
         }
-      }
     }
-  }
-  buffer[i] = 0;
-  Serial.print(buffer);
-  return found;
+    buffer[i] = 0;
+    Serial.print(buffer);
+    return found;
 }
 
 void setup() {
-  espSerial.begin(9600);
-  Serial.begin(9600);  //Serial cum debug port for Raspberry Pi: Incoming data from RPi
-  Serial.println("Begin...");
-  setupWiFi();
-  // print device IP address
-  Serial.print("Device IP Address:");
-  espSerial.println("AT+CIFSR");
-  wait_for_espSerial_respSerialonse(1000);
-  
-  setDefaultPulseWidths();
-  
-  // Start timer with sync pulse
-  Timer1.initialize(SYNC_PULSE_TIME);
-  Timer1.attachInterrupt(isr_sendPulses);
-  isr_sendPulses();
+    espSerial.begin(9600);
+    Serial.begin(9600);  //Serial cum debug port for Raspberry Pi: Incoming data from RPi
+    Serial.println("Begin...");
+    setupWiFi();
+    // print device IP address
+    Serial.print("Device IP Address:");
+    espSerial.println("AT+CIFSR");
+    wait_for_espSerial_respSerialonse(1000);
+
+    setDefaultPulseWidths();
+
+    // Start timer with sync pulse
+    Timer1.initialize(SYNC_PULSE_TIME);
+    Timer1.attachInterrupt(isr_sendPulses);
+    isr_sendPulses();
 }
 
 
 bool read_till_eol() {
-  static int i = 0;
-  if (espSerial.available()) {
-    buffer[i++] = espSerial.read();
-    if (i == BUFFER_SIZE)  i = 0;
-    if (i > 1 && buffer[i - 2] == 13 && buffer[i - 1] == 10) {
-      buffer[i] = 0;
-      i = 0;
-      Serial.print(buffer);
-      return true;
+    static int i = 0;
+    if (espSerial.available()) {
+        buffer[i++] = espSerial.read();
+        if (i == BUFFER_SIZE)  i = 0;
+        if (i > 1 && buffer[i - 2] == 13 && buffer[i - 1] == 10) {
+            buffer[i] = 0;
+            i = 0;
+            Serial.print(buffer);
+            return true;
+        }
     }
-  }
-  return false;
+    return false;
 }
 
 void loop() {
-  int ch_id, packet_len;
-  char *pb;
-  if (read_till_eol()) {
-    if (strncmp(buffer, "+IPD,", 5) == 0) {
-      // request: +IPD,ch,len:data
-      sscanf(buffer + 5, "%d,%d", &ch_id, &packet_len);
-      if (packet_len > 0) {
-        // read serial until packet_len character received
-        // start from :
-        pb = buffer + 5;
-        while (*pb != ':') pb++;
-        pb++;
-        if (strncmp(pb, "GET /", 5) == 0) {
-          wait_for_espSerial_respSerialonse(1000);
-          Serial.println("-> serve homepage");
-          serve_homepage(ch_id);
+    int ch_id, packet_len;
+    char *pb;
+    if (read_till_eol()) {
+        if (strncmp(buffer, "+IPD,", 5) == 0) {
+            // request: +IPD,ch,len:data
+            sscanf(buffer + 5, "%d,%d", &ch_id, &packet_len);
+            if (packet_len > 0) {
+                // read serial until packet_len character received
+                // start from :
+                pb = buffer + 5;
+                while (*pb != ':') pb++;
+                pb++;
+                if (strncmp(pb, "GET /", 5) == 0) {
+                    wait_for_espSerial_respSerialonse(1000);
+                    Serial.println("-> serve homepage");
+                    serve_homepage(ch_id);
+                }
+            }
         }
-      }
     }
-  }
 }
 void serve_homepage(int ch_id) {
-  String header = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n";
-  String content = "";
-  content += "Hello World!!!";
+    String header = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n";
+    String content = "";
+    content += "Hello World!!!";
 
-  header += "Content-Length:";
-  header += (int)(content.length());
-  header += "\r\n\r\n";
-  espSerial.print("AT+CIPSEND=");
-  espSerial.print(ch_id);
-  espSerial.print(",");
-  espSerial.println(header.length() + content.length());
-  if (wait_for_espSerial_respSerialonse(2000, "> ")) {
-    espSerial.print(header);
-    espSerial.print(content);
-  } else {
-    espSerial.print("AT+CIPCLOSE=");
-    espSerial.println(ch_id);
-  }
+    header += "Content-Length:";
+    header += (int)(content.length());
+    header += "\r\n\r\n";
+    espSerial.print("AT+CIPSEND=");
+    espSerial.print(ch_id);
+    espSerial.print(",");
+    espSerial.println(header.length() + content.length());
+    if (wait_for_espSerial_respSerialonse(2000, "> ")) {
+        espSerial.print(header);
+        espSerial.print(content);
+    } else {
+        espSerial.print("AT+CIPCLOSE=");
+        espSerial.println(ch_id);
+    }
 }
 
 
 void setupWiFi() {
-  // try empty AT command
-  espSerial.println("AT");
-  wait_for_espSerial_respSerialonse(1000);
+    // try empty AT command
+    espSerial.println("AT");
+    wait_for_espSerial_respSerialonse(1000);
 
-  // set mode 1 (client)
-  espSerial.println("AT+CWMODE=1");
-  wait_for_espSerial_respSerialonse(1000);
+    // set mode 1 (client)
+    espSerial.println("AT+CWMODE=1");
+    wait_for_espSerial_respSerialonse(1000);
 
-  // reset WiFi module
-  espSerial.print("AT+RST\r\n");
-  wait_for_espSerial_respSerialonse(1500);
+    // reset WiFi module
+    espSerial.print("AT+RST\r\n");
+    wait_for_espSerial_respSerialonse(1500);
 
-  // join AP
-  espSerial.print("AT+CWJAP=\"");
-  espSerial.print(SSID);
-  espSerial.print("\",\"");
-  espSerial.print(PASS);
-  espSerial.println("\"");
-  // this may take a while, so wait for 5 seconds
-  wait_for_espSerial_respSerialonse(5000);
+    // join AP
+    espSerial.print("AT+CWJAP=\"");
+    espSerial.print(SSID);
+    espSerial.print("\",\"");
+    espSerial.print(PASS);
+    espSerial.println("\"");
+    // this may take a while, so wait for 5 seconds
+    wait_for_espSerial_respSerialonse(5000);
 
-  espSerial.println("AT+CIPSTO=30");
-  wait_for_espSerial_respSerialonse(1000);
+    espSerial.println("AT+CIPSTO=30");
+    wait_for_espSerial_respSerialonse(1000);
 
-  // start server
-  espSerial.println("AT+CIPMUX=1");
-  wait_for_espSerial_respSerialonse(1000);
+    // start server
+    espSerial.println("AT+CIPMUX=1");
+    wait_for_espSerial_respSerialonse(1000);
 
-  espSerial.print("AT+CIPSERVER=1,"); // turn on TCP service
-  espSerial.println(PORT_SERVER);
-  wait_for_espSerial_respSerialonse(1000);
+    espSerial.print("AT+CIPSERVER=1,"); // turn on TCP service
+    espSerial.println(PORT_SERVER);
+    wait_for_espSerial_respSerialonse(1000);
 
 }
 
 
 
 void serialpipe(){
- 
-  while(Interrupt && fifoCount < packetSize){
 
-  Serial.listen(); //Listening from RPi
-  Serial.println("Data from port one:");
-  int LV,LH,RV,RH,AUX;  
-int counter=0;
+    while(Interrupt && fifoCount < packetSize){
 
-  //Listening from esp8266
-  while (esp8266_port.available() > 0 && counter<5) {
-    char inByte = esp8266_port.read();
-    
-    switch(counter){
-        case(counter==0):
-            Serial.println("LV byte");
-	    LV=inByte;
+        Serial.listen(); //Listening from RPi
+        Serial.println("Data from port one:");
+        int LV,LH,RV,RH,AUX;  
+        int counter=0;
 
-        case(counter==1):
-            Serial.println("LH byte");
-	    LH=inByte;
-            '
-        case(counter==2):
-            Serial.println("RV byte");
-	    RV=inByte;
+        //Listening from esp8266
+        while (esp8266_port.available() > 0 && counter<5) {
+            char inByte = esp8266_port.read();
 
-        case(counter==3):
-            Serial.println("RH byte");
-	    RH=inByte;
+            switch(counter){
+                case(counter==0):
+                    Serial.println("LV byte");
+                    LV=inByte;
 
-        case(counter==4):
-            Serial.println("AUX byte");
-	    AUX=inByte;
+                case(counter==1):
+                    Serial.println("LH byte");
+                    LH=inByte;
+                    '
+                case(counter==2):
+                        Serial.println("RV byte");
+                        RV=inByte;
 
-        case(counter==5):
-            counter=0;
+                case(counter==3):
+                        Serial.println("RH byte");
+                        RH=inByte;
 
-        counter++;
+                case(counter==4):
+                        Serial.println("AUX byte");
+                        AUX=inByte;
+
+                case(counter==5):
+                        counter=0;
+
+                        counter++;
+            }
+
+            Serial.write(inByte);   
+        }
+        calculateVelocities();
+        pin_pwm(LV, LH, RV, RH, AUX);
+    }
+}
+
+    //Acquire Lock
+    inline void acquireLock(){
+        interruptLock = true; 
     }
 
-    Serial.write(inByte);   
-  }
-  calculateVelocities();
-  pin_pwm(LV, LH, RV, RH, AUX);
-  }
+    //Release Lock
+    inline void releaseLock(){
+        interruptLock = false;
+    }
 
-/** calculate Velocities function **/
+    void pwm_pin(){
 
-void calculateVelocities(){
-
-  acquireLock();
-
-  ch3 = floor(ch3/ROUNDING_BASE)*ROUNDING_BASE;
-  velocity = map(ch3, LOW_CH3, HIGH_CH3, ESC_MIN, ESC_MAX);
-  
-  releaseLock();
-
-  if((velocity < ESC_MIN) || (velocity > ESC_MAX)) velocity = velocityLast;
-  
-  velocityLast = velocity;
-  
-  v_ac = (abs(-100+bal_axes)/100)*velocity;
-  v_bd = ((100+bal_axes)/100)*velocity;
-  
-  va = ((100+bal_ac)/100)*v_ac;
-  vb = ((100+bal_bd)/100)*v_bd;
-  
-  vc = (abs((-100+bal_ac)/100))*v_ac;
-  vd = (abs((-100+bal_bd)/100))*v_bd;
-  
-  Serial.println(bal_bd);
-  
-  if(velocity < ESC_TAKEOFF_OFFSET){
-  
-    va = ESC_MIN;
-    vb = ESC_MIN;
-    vc = ESC_MIN;
-    vd = ESC_MIN;
-  
-  }
- 
-}
-
-//Acquire Lock
-inline void acquireLock(){
-  interruptLock = true; 
-}
-
-//Release Lock
-inline void releaseLock(){
-  interruptLock = false;
-}
-
-void pwm_pin(){
-
-
-      // Convert char (0-250) to pulse width (1000-2000)
-      for (int i=0; i<CHANNELS; i++) {
-        pulseWidths[i] = map(buffer[i], MIN_RECEIVER_VALUE, MAX_RECEIVER_VALUE, 
-                                        MIN_PULSE_TIME, MAX_PULSE_TIME);
-  }
-}
+        // Convert char (0-250) to pulse width (1000-2000)
+        for (int i=0; i<CHANNELS; i++) {
+            pulseWidths[i] = map(buffer[i], MIN_RECEIVER_VALUE, MAX_RECEIVER_VALUE, 
+                    MIN_PULSE_TIME, MAX_PULSE_TIME);
+        }
+    }
 
 #endif
