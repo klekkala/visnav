@@ -140,7 +140,6 @@ Servo a,b,c,d;
  */
  
 float ch1Last, ch2Last, ch4Last, velocityLast;
-#include <SoftwareSerial.h>
 SoftwareSerial esp8266_port(2, 13); // RX, TX
 HardwareSerial & espSerial = Serial;
 
@@ -293,8 +292,8 @@ void setupWiFi() {
 
 
 
-void loop(){
-  
+void serialpipe(){
+ 
   while(Interrupt && fifoCount < packetSize){
 
   Serial.listen(); //Listening from RPi

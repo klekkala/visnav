@@ -1,20 +1,7 @@
-/* ====== esp8266 HelloWorld Demo ======
- * Print out analog values
- * (Updated Dec 14, 2014)
- * ==========================
- *
- * Change SSID and PASS to match your WiFi settings.
- * The IP address is displayed to soft serial upon successful connection.
- *
- * Ray Wang @ Rayshobby LLC
- * http://rayshobby.net/?p=9734
- */
+/**Author: Kiran Kumar Lekkala **/
+/**Description: switch file multiplexing the values from Raspberry pi and the remote**/
+/**Date: 10 June 2015 **/
 
-//Leonardo
-//Serial_ & Serial = Serial;
-//HardwareSerial & espSerial = Serial1;
-
-////UNO & M328P
 
 /****  Arduino Pin configuration
    **ESP8266(ESP-07) Wifi Serial Adapter
