@@ -11,7 +11,7 @@
  */
 
 //Leonardo
-//Serial_ & dbgTerminal = Serial;
+//Serial_ & Serial = Serial;
 //HardwareSerial & espSerial = Serial1;
 
 ////UNO & M328P
@@ -73,20 +73,28 @@ byte wait_for_espSerial_respSerialonse(int timeout, char* term = OKrn) {
     }
   }
   buffer[i] = 0;
-  dbgTerminal.print(buffer);
+  Serial.print(buffer);
   return found;
 }
 
 void setup() {
   espSerial.begin(9600);
-  dbgTerminal.begin(9600);
-  dbgTerminal.println("Begin...");
+  Serial.begin(9600);  //Serial cum debug port for Raspberry Pi: Incoming data from RPi
+  Serial.println("Begin...");
   setupWiFi();
   // print device IP address
-  dbgTerminal.print("Device IP Address:");
+  Serial.print("Device IP Address:");
   espSerial.println("AT+CIFSR");
   wait_for_espSerial_respSerialonse(1000);
+  
+  setDefaultPulseWidths();
+  
+  // Start timer with sync pulse
+  Timer1.initialize(SYNC_PULSE_TIME);
+  Timer1.attachInterrupt(isr_sendPulses);
+  isr_sendPulses();
 }
+
 
 bool read_till_eol() {
   static int i = 0;
@@ -96,7 +104,7 @@ bool read_till_eol() {
     if (i > 1 && buffer[i - 2] == 13 && buffer[i - 1] == 10) {
       buffer[i] = 0;
       i = 0;
-      dbgTerminal.print(buffer);
+      Serial.print(buffer);
       return true;
     }
   }
@@ -118,7 +126,7 @@ void loop() {
         pb++;
         if (strncmp(pb, "GET /", 5) == 0) {
           wait_for_espSerial_respSerialonse(1000);
-          dbgTerminal.println("-> serve homepage");
+          Serial.println("-> serve homepage");
           serve_homepage(ch_id);
         }
       }
@@ -289,23 +297,6 @@ Servo a,b,c,d;
  */
  
 float ch1Last, ch2Last, ch4Last, velocityLast;
-
-/** Setup function **/
-void setup(){
-  
-  pinMode(PIN_LED, OUTPUT);
-
-  Serial.begin(38400); //Serial Port for Raspberry Pi: Incoming data from RPi
-  esp8266_pipe
-  setDefaultPulseWidths();
-  
-  // Start timer with sync pulse
-  Timer1.initialize(SYNC_PULSE_TIME);
-  Timer1.attachInterrupt(isr_sendPulses);
-  isr_sendPulses();
-
-}
-
 
 void loop(){
   
