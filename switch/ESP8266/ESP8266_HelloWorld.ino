@@ -318,10 +318,13 @@ void loop(){
   while (esp8266_port.available() > 0 && counter<5) {
     char inByte = esp8266_port.read();
     
-    switch(counter):
-    	case(counter=1):
-    		Serial.println("LV byte");
-    Serial.write(inByte);
+    switch(counter){
+    
+
+
+
+    }
+Serial.write(inByte);
     
   }
 
