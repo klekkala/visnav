@@ -313,7 +313,8 @@ void loop(){
 
   Serial.listen(); //Listening from RPi
   Serial.println("Data from port one:");
-  int counter=0;
+  int LV,LH,RV,RH,AUX;  
+int counter=0;
 
   //Listening from esp8266
   while (esp8266_port.available() > 0 && counter<5) {
@@ -322,18 +323,23 @@ void loop(){
     switch(counter){
         case(counter==0):
             Serial.println("LV byte");
+	    LV=inByte;
 
         case(counter==1):
             Serial.println("LH byte");
+	    LH=inByte;
             '
         case(counter==2):
             Serial.println("RV byte");
+	    RV=inByte;
 
         case(counter==3):
             Serial.println("RH byte");
+	    RH=inByte;
 
         case(counter==4):
             Serial.println("AUX byte");
+	    AUX=inByte;
 
         case(counter==5):
             counter=0;
@@ -344,7 +350,7 @@ void loop(){
     Serial.write(inByte);   
   }
   calculateVelocities();
-  pin_pwm();
+  pin_pwm(LV, LH, RV, RH, AUX);
   }
 
 /** calculate Velocities function **/
@@ -393,6 +399,9 @@ inline void acquireLock(){
 inline void releaseLock(){
   interruptLock = false;
 }
+
+void pwm_pin(){
+
 
       // Convert char (0-250) to pulse width (1000-2000)
       for (int i=0; i<CHANNELS; i++) {
