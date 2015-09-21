@@ -107,8 +107,9 @@
 /** Channels **/
 #define CHANNELS 8
 
-#define BUFFER_SIZE 512
 
+/**ESP8266 config**/
+#define BUFFER_SIZE 512
 #define SSID  "ESP8266" 
 #define PASS  "qwertyuiop" 
 #define PORT_SERVER  "8080"  
@@ -338,7 +339,6 @@ void serialpipe(){
     }
 
     void pwm_pin(){
-
         // Convert char (0-250) to pulse width (1000-2000)
         for (int i=0; i<CHANNELS; i++) {
             pulseWidths[i] = map(buffer[i], MIN_RECEIVER_VALUE, MAX_RECEIVER_VALUE, 

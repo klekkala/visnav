@@ -4,27 +4,27 @@
 
 
 /****  Arduino Pin configuration
-   **ESP8266(ESP-07) Wifi Serial Adapter
-	3.3V  <--> VCC
-	3.3V  <--> CH_PD
-	GND <--> GND
-	D13 <--> TX 
-	D2 <--> RX
+ **ESP8266(ESP-07) Wifi Serial Adapter
+ 3.3V  <--> VCC
+ 3.3V  <--> CH_PD
+ GND <--> GND
+ D13 <--> TX 
+ D2 <--> RX
 
-   **Multiwii Flight Controller
-	D12 <--> 33(CAM PITCH)
-	D11 <--> 32(CAM ROLL)  
-	D10 <--> A15(AUX-4) 
-	D09 <--> A14(AUX-3)
-	D08 <--> A13(AUX-2)
-	D07 <--> A12(AUX-1)
-	D06 <--> A11(YAW)
-	D05 <--> A10(PITCH)
-	D04 <--> A09(ROLL)
-	D03 <--> A08(THROTTLE)
+ **Multiwii Flight Controller
+ D12 <--> 33(CAM PITCH)
+ D11 <--> 32(CAM ROLL)  
+ D10 <--> A15(AUX-4) 
+ D09 <--> A14(AUX-3)
+ D08 <--> A13(AUX-2)
+ D07 <--> A12(AUX-1)
+ D06 <--> A11(YAW)
+ D05 <--> A10(PITCH)
+ D04 <--> A09(ROLL)
+ D03 <--> A08(THROTTLE)
 
-  ***USB to Raspberry
-**/
+ ***USB to Raspberry
+ **/
 
 #include <Servo.h>
 #include <Wire.h>
@@ -328,23 +328,23 @@ void serialpipe(){
     }
 }
 
-    //Acquire Lock
-    inline void acquireLock(){
-        interruptLock = true; 
-    }
+//Acquire Lock
+inline void acquireLock(){
+    interruptLock = true; 
+}
 
-    //Release Lock
-    inline void releaseLock(){
-        interruptLock = false;
-    }
+//Release Lock
+inline void releaseLock(){
+    interruptLock = false;
+}
 
-    void pwm_pin(){
+void pwm_pin(){
 
-        // Convert char (0-250) to pulse width (1000-2000)
-        for (int i=0; i<CHANNELS; i++) {
-            pulseWidths[i] = map(buffer[i], MIN_RECEIVER_VALUE, MAX_RECEIVER_VALUE, 
-                    MIN_PULSE_TIME, MAX_PULSE_TIME);
-        }
+    // Convert char (0-250) to pulse width (1000-2000)
+    for (int i=0; i<CHANNELS; i++) {
+        pulseWidths[i] = map(buffer[i], MIN_RECEIVER_VALUE, MAX_RECEIVER_VALUE, 
+                MIN_PULSE_TIME, MAX_PULSE_TIME);
     }
+}
 
 #endif
