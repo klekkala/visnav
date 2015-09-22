@@ -14,10 +14,10 @@
  **Multiwii Flight Controller
  D12 <--> 33(CAM PITCH)
  D11 <--> 32(CAM ROLL)  
- D10 <--> A15(AUX-4) 
- D09 <--> A14(AUX-3)
- D08 <--> A13(AUX-2)
- D07 <--> A12(AUX-1)
+ D10 <--> A15(AUX4) 
+ D09 <--> A14(AUX3)
+ D08 <--> A13(AUX2)
+ D07 <--> A12(AUX1)
  D06 <--> A11(YAW)
  D05 <--> A10(PITCH)
  D04 <--> A09(ROLL)
@@ -39,10 +39,10 @@
 /**Pin Macros **/
 #define CAM_PITCH 11 
 #define CAM_ROLL 10
-#define AUX-1 9
-#define AUX-2 8
-#define AUX-3 7
-#define AUX-4 6
+#define AUX1 9
+#define AUX2 8
+#define AUX3 7
+#define AUX4 6
 #define YAW 5
 #define PITCH 4
 #define ROLL 3
@@ -51,10 +51,10 @@
 
 /*** Alternate MACROS ***/
 
-#define CH5 AUX-1
-#define CH6 AUX-2 
-#define CH7 AUX-3
-#define CH8 AUX-4
+#define CH5 AUX1
+#define CH6 AUX2 
+#define CH7 AUX3
+#define CH8 AUX4
 #define CH4 YAW
 #define CH2 PITCH
 #define CH1 ROLL
@@ -355,6 +355,21 @@ void pwm_pin(const int LV, const int LH, const int RV, const int RH, const int A
 
 	//Acquire lock
 	//Release lock
+
+    switch(AUX){
+        case(AUX==0):
+            digital.Write(AUX1, HIGH);
+
+        case(AUX==1):
+            digital.Write(AUX2, HIGH);
+
+        case(AUX==2):
+            digital.Write(AUX3, HIGH);
+
+        case(AUX==3):
+            digital.Write(AUX4, HIGH);
+
+    }
 
 }
 
