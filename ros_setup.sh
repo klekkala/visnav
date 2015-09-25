@@ -97,7 +97,6 @@ rosinstall_generator ros_comm ros_control joystick_drivers --rosdistro indigo --
 wstool merge -t src indigo-custom_ros.rosinstall
 wstool update -t src
 
-
 rosdep install --from-paths src --ignore-src --rosdistro indigo -y -r --os=debian:wheezy
 
 ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/indigo
