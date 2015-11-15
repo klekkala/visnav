@@ -1,0 +1,16 @@
+sudo dpkg -i cuda-repo-ubuntu1404_7.5-18_amd64.deb 
+$ sudo apt-get update
+CUDA Toolkit
+Then you can install the CUDA Toolkit using apt-get.
+
+$ sudo apt-get install cuda
+You should reboot the system afterwards and verify the driver installation with the nvidia-settings utility.
+
+Environment Variables
+As part of the CUDA environment, you should add the following in the .bashrc file of your home folder.
+
+export CUDA_HOME=/usr/local/cuda-7.5 
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64 
+ 
+PATH=${CUDA_HOME}/bin:${PATH} 
+export PATH
