@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/camtest.c
+signal.h
+-
+stdbool.h
+-
+stdio.h
+-
+string.h
+-
+libfreenect.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/libfreenect.h
+
+include/libfreenect.h
+stdint.h
+-
+winsock.h
+-
+sys/time.h
+-
+

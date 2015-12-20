@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -O2     CMakeFiles/freenect-camtest.dir/camtest.c.o  -o ../bin/freenect-camtest -rdynamic ../lib/libfreenect.so.0.5.3 -lusb-1.0 -Wl,-rpath,/home/kiran/visnav/drivers/libfreenect-0.5.3/lib: 

@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kiran/visnav/drivers/libfreenect-0.5.3/fakenect/platform.h
+math.h
+-
+direct.h
+-
+windows.h
+-
+time.h
+-
+unistd.h
+-
+
+/home/kiran/visnav/drivers/libfreenect-0.5.3/fakenect/record.c
+libfreenect.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/fakenect/libfreenect.h
+platform.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/fakenect/platform.h
+sys/stat.h
+-
+sys/types.h
+-
+stdio.h
+-
+signal.h
+-
+string.h
+-
+stdlib.h
+-
+
+include/libfreenect.h
+stdint.h
+-
+winsock.h
+-
+sys/time.h
+-
+

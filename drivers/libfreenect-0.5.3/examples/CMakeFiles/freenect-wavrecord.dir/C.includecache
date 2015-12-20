@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/wavrecord.c
+libfreenect.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/libfreenect.h
+libfreenect_audio.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/libfreenect_audio.h
+stdio.h
+-
+signal.h
+-
+
+include/libfreenect.h
+stdint.h
+-
+winsock.h
+-
+sys/time.h
+-
+
+include/libfreenect_audio.h
+libfreenect.h
+include/libfreenect.h
+stdint.h
+-
+

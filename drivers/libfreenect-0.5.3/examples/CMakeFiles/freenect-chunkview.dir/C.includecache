@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/chunkview.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+assert.h
+-
+libfreenect.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/libfreenect.h
+pthread.h
+-
+GLUT/glut.h
+-
+GL/glut.h
+-
+math.h
+-
+
+include/libfreenect.h
+stdint.h
+-
+winsock.h
+-
+sys/time.h
+-
+

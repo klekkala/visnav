@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -O2     CMakeFiles/freenect-cppview.dir/cppview.cpp.o  -o ../../bin/freenect-cppview -rdynamic ../../lib/libfreenect.so.0.5.3 -lGLU -lGL -lSM -lICE -lX11 -lXext -lglut -lXmu -lXi -lpthread -lm -lusb-1.0 -Wl,-rpath,/home/kiran/visnav/drivers/libfreenect-0.5.3/lib: 

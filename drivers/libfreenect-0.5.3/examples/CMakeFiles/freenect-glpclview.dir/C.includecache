@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/glpclview.c
+libfreenect.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/libfreenect.h
+libfreenect_sync.h
+/home/kiran/visnav/drivers/libfreenect-0.5.3/examples/libfreenect_sync.h
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+GLUT/glut.h
+-
+GL/glut.h
+-
+
+examples/../wrappers/c_sync/libfreenect_sync.h
+libfreenect.h
+examples/../wrappers/c_sync/libfreenect.h
+stdint.h
+-
+
+include/libfreenect.h
+stdint.h
+-
+winsock.h
+-
+sys/time.h
+-
+

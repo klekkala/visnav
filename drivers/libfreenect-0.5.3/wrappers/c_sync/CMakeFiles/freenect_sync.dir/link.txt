@@ -1,0 +1,1 @@
+/usr/bin/cc  -fPIC -Wall -O2    -shared -Wl,-soname,libfreenect_sync.so.0.5 -o ../../lib/libfreenect_sync.so.0.5.3 CMakeFiles/freenect_sync.dir/libfreenect_sync.c.o ../../lib/libfreenect.so.0.5.3 -lpthread -lusb-1.0 -Wl,-rpath,/home/kiran/visnav/drivers/libfreenect-0.5.3/lib: 
