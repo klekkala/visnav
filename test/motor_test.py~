@@ -5,7 +5,7 @@
 
 from motor import motor
 
-mymotor = motor('m1', 15, simulation=False)
+mymotor = motor('m1', 17, simulation=False)
 #where 17 is  GPIO17 = pin 11
 
 print('***Disconnect ESC power')
